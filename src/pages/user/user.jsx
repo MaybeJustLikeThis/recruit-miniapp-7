@@ -1,9 +1,10 @@
 import { View } from "@tarojs/components";
-
+import './user.scss'
+import { useState } from "react";
 export default function User() {
     return (
-        <View>
-            我是用户信息页
-        </View>
-    )
+      <View className="box">
+        我是用户页面
+      </View>
+    );
 }
