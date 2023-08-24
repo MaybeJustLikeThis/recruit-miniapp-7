@@ -1,6 +1,6 @@
 import { useLaunch } from '@tarojs/taro'
 import './app.scss'
-
+document.documentElement.style.fontSize= 100 / 375 +'vw'
 function App({ children }) {
 
   useLaunch(() => {
