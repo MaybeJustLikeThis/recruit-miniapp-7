@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { log } from "console";
 
 const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
         profilePhotoUrl: '',
-        nickName: 'aaa',
+        nickName: 'Handsome',
         name: '',
     },
     reducers: {
