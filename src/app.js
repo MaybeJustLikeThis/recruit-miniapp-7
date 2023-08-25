@@ -1,6 +1,8 @@
 import { useLaunch } from '@tarojs/taro'
-import './app.scss'
-document.documentElement.style.fontSize= 100 / 375 +'vw'
+import { Provider } from 'react-redux'
+import store from './store/index'
+
+import "./app.scss";
 function App({ children }) {
 
   useLaunch(() => {
@@ -8,7 +10,9 @@ function App({ children }) {
   })
 
   // children 是将要会渲染的页面
-  return children
+  return (
+    <Provider store={store}>{ children }</Provider>
+  )
 }
 
 export default App
