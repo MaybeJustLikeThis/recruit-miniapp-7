@@ -11170,6 +11170,11 @@ tar-stream@^1.5.2:
     to-buffer "^1.1.1"
     xtend "^4.0.0"
 
+taro-code@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmmirror.com/taro-code/-/taro-code-4.0.1.tgz#e7d307c2b589a053670cbac8e1caa119faf62e63"
+  integrity sha512-9nyPVNYiKrYOgebB5JuLLNgLA15llvNS/qjNE4Llqetqi9F1J9SaYlFcZnOrJFPJIT3vdETNrC++afjY1XSt0A==
+
 terser-webpack-plugin@^5.1.3:
   version "5.3.9"
   resolved "https://registry.npmmirror.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.9.tgz#832536999c51b46d468067f9e37662a3b96adfe1"
