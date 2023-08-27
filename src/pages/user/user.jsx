@@ -1,8 +1,17 @@
+/*
+ * @Author: DoubleLiHao =2998000782@qq.com
+ * @Date: 2023-08-21 21:53:21
+ * @LastEditors: DoubleLiHao =2998000782@qq.com
+ * @LastEditTime: 2023-08-27 11:35:19
+ * @FilePath: \yzyy\src\pages\user\user.jsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { View, Text, Image } from "@tarojs/components";
 import logo from "../../icons/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./user.scss";
+import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 
 export default function User() {
   const { nickName } = useSelector((state) => state.userSlice);
@@ -39,6 +48,9 @@ export default function User() {
             <Image src={logo} className="img" mode="scaleToFill"></Image>
           </View>
         </View>
+      </View>
+      <View className="button-box">
+        <ButtonUser></ButtonUser>
       </View>
     </View>
   );
