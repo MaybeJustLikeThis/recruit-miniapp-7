@@ -1,7 +1,7 @@
 export default defineAppConfig({
   pages: [
-    "pages/user/user",
     "pages/login/login",
+    "pages/user/user",
     "pages/index/index",
     "pages/option/option",
     "pages/apply/apply",
@@ -30,20 +30,20 @@ export default defineAppConfig({
       {
         pagePath: "pages/index/index",
         text: "首页",
-        iconPath: "icons/index.png",
-        selectedIconPath: "icons/selectIndex.png",
+        iconPath: "assets/icons/index.png",
+        selectedIconPath: "assets/icons/selectIndex.png",
       },
       {
         pagePath: "pages/option/option",
         text: "工具",
-        iconPath: "icons/tool.png",
-        selectedIconPath: "icons/selectTool.png",
+        iconPath: "assets/icons/tool.png",
+        selectedIconPath: "assets/icons/selectTool.png",
       },
       {
         pagePath: "pages/user/user",
         text: "我的",
-        iconPath: "icons/user.png",
-        selectedIconPath: "icons/selectUser.png",
+        iconPath: "assets/icons/user.png",
+        selectedIconPath: "assets/icons/selectUser.png",
       },
     ],
   },

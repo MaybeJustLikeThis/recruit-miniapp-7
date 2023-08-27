@@ -1,20 +1,24 @@
 import { View, Button } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import "./login.scss";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../../store/userSlice";
 export default function Login() {
+  const dispatch = useDispatch();
   const toIndex = () => {
     Taro.getUserProfile({
       desc: "是否允许获取用户信息",
       success: (data) => {
-          console.log("授权成功", data.userInfo);
-          Taro.login({
-              success: (data) => {
-                  console.log(data, '登录成功');
-                  Taro.switchTab({
-                      url: '/pages/index/index'
-                  })
-              }
-          })
+        // 获取用户信息
+        dispatch(setUserInfo(data.userInfo));
+        Taro.login({
+          success: (data) => {
+            console.log(data, "登录成功");
+            Taro.switchTab({
+              url: "/pages/index/index",
+            });
+          },
+        });
       },
       fail: () => {
         console.log("获取信息失败");

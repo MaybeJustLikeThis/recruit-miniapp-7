@@ -2,30 +2,50 @@
  * @Author: DoubleLiHao =2998000782@qq.com
  * @Date: 2023-08-21 21:53:21
  * @LastEditors: DoubleLiHao =2998000782@qq.com
- * @LastEditTime: 2023-08-27 11:35:19
+ * @LastEditTime: 2023-08-27 13:55:19
  * @FilePath: \yzyy\src\pages\user\user.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { View, Text, Image } from "@tarojs/components";
-import logo from "../../icons/logo.png";
+import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
 
+// icon图标引入
+import logo from "../../assets/icons/logo.png";
+import infoEdit from "../../assets/icons/infoEdit.png";
+import applicationSubmit from "../../assets/icons/ApplicationSubmit.png";
+import qr from "../../assets/icons/qr.png";
+
 import "./user.scss";
-import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 
 export default function User() {
-  const { nickName } = useSelector((state) => state.userSlice);
+  // 获取用户昵称和头像
+  const { nickName, avatarUrl } = useSelector((state) => state.userSlice);
+
+  // 生成对应时间的问候语
+  const getGreet = () => {
+    const hour = new Date().getHours();
+    console.log(hour);
+    let greet = "时间未知";
+    if (hour > 6 && hour < 12) greet = "早上好，"
+    else if (hour >= 12 && hour < 15) greet = "中午好，"
+    else if (hour >= 15 && hour < 19) greet = "下午好，"
+    else greet = "晚上好，";
+    return <View className="greet">{greet}</View>;
+  };
+
   return (
     <View className="box">
       <View className="top">
         <View className="text-container">
-          <View className="greet">早上好，</View>
+          {getGreet()}
           <Text className="nickname">{nickName}</Text>
         </View>
         <View className="profile-photo">
-          <Image className="photo" src="" mode="scaleToFill"></Image>
+          <Image className="photo" src={avatarUrl} mode="scaleToFill"></Image>
         </View>
       </View>
+
       <View className="info-box">
         <View className="info rotate"></View>
         <View className="info info-up">
@@ -49,8 +69,17 @@ export default function User() {
           </View>
         </View>
       </View>
+
       <View className="button-box">
-        <ButtonUser></ButtonUser>
+        <View className="button edit-button">
+          <ButtonUser icon={infoEdit} name="信息修改"></ButtonUser>
+        </View>
+        <View className="button submit-button">
+          <ButtonUser icon={applicationSubmit} name="申请书提交"></ButtonUser>
+        </View>
+        <View className="button qr-button">
+          <ButtonUser icon={qr} name="我的二维码"></ButtonUser>
+        </View>
       </View>
     </View>
   );
