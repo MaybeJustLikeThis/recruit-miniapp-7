@@ -2,13 +2,14 @@
  * @Author: DoubleLiHao =2998000782@qq.com
  * @Date: 2023-08-21 21:53:21
  * @LastEditors: DoubleLiHao =2998000782@qq.com
- * @LastEditTime: 2023-08-27 13:55:19
+ * @LastEditTime: 2023-08-27 18:23:04
  * @FilePath: \yzyy\src\pages\user\user.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { View, Text, Image } from "@tarojs/components";
 import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
+import Taro from "@tarojs/taro";
 
 // icon图标引入
 import logo from "../../assets/icons/logo.png";
@@ -27,11 +28,17 @@ export default function User() {
     const hour = new Date().getHours();
     console.log(hour);
     let greet = "时间未知";
-    if (hour > 6 && hour < 12) greet = "早上好，"
-    else if (hour >= 12 && hour < 15) greet = "中午好，"
-    else if (hour >= 15 && hour < 19) greet = "下午好，"
+    if (hour > 6 && hour < 12) greet = "早上好，";
+    else if (hour >= 12 && hour < 15) greet = "中午好，";
+    else if (hour >= 15 && hour < 19) greet = "下午好，";
     else greet = "晚上好，";
     return <View className="greet">{greet}</View>;
+  };
+  // 按钮跳转
+  const toPage = (url) => {
+    Taro.navigateTo({
+      url,
+    });
   };
 
   return (
@@ -71,13 +78,28 @@ export default function User() {
       </View>
 
       <View className="button-box">
-        <View className="button edit-button">
+        <View
+          className={"button edit-button"}
+          onClick={() => {
+            toPage("/pages/apply/apply");
+          }}
+        >
           <ButtonUser icon={infoEdit} name="信息修改"></ButtonUser>
         </View>
-        <View className="button submit-button">
+        <View
+          className="button submit-button"
+          onClick={() => {
+            toPage("/pages/applicationSubmit/applicationSubmit");
+          }}
+        >
           <ButtonUser icon={applicationSubmit} name="申请书提交"></ButtonUser>
         </View>
-        <View className="button qr-button">
+        <View
+          className="button qr-button"
+          onClick={() => {
+            toPage("/pages/myqr/myqr");
+          }}
+        >
           <ButtonUser icon={qr} name="我的二维码"></ButtonUser>
         </View>
       </View>

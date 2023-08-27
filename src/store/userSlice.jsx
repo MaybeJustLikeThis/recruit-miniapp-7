@@ -5,7 +5,11 @@ const userSlice = createSlice({
   initialState: {
     avatarUrl: "",
     nickName: "Handsome",
-    name: "",
+    qrData: {
+      name: JSON.stringify({
+        name: 'aaaa'
+      }),
+    },
   },
   reducers: {
     // 操作state的函数 action.payload是调用时传的参数
@@ -17,6 +21,6 @@ const userSlice = createSlice({
   },
 });
 
-export  const { setUserInfo } = userSlice.actions;
+export  const { setUserInfo, } = userSlice.actions;
 
 export default userSlice
