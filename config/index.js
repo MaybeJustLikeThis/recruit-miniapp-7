@@ -1,5 +1,5 @@
 import { defineConfig } from '@tarojs/cli'
-
+import path from 'path'
 import devConfig from './dev'
 import prodConfig from './prod'
 
@@ -20,6 +20,10 @@ export default defineConfig(async (merge, { command, mode }) => {
     plugins: ["@tarojs/plugin-html"],
     defineConstants: {
       TARO_FILTER_NOT_USED_FILE: false,
+    },
+    alias: {
+      "@": path.resolve(__dirname, "..", "src"),
+      '@assets': path.resolve(__dirname, '..', 'src/assets')
     },
     copy: {
       patterns: [],

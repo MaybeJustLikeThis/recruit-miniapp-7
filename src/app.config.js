@@ -15,6 +15,9 @@ export default defineAppConfig({
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "black",
+    // fonts: {
+    //   'PingFang': 'url(./assets/PingFang Regular.otf)',
+    // },
   },
 
   tabBar: {
