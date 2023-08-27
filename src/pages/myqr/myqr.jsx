@@ -4,8 +4,7 @@ import { View, Image, Canvas } from "@tarojs/components";
 import iconLeft from "../../assets/icons/avatarLeft.png";
 import iconRight from "../../assets/icons/avatarRight.png";
 import { useDispatch, useSelector } from "react-redux";
-import Taro from "@tarojs/taro";
-import { QRCode } from "taro-code";
+import {QRCode} from "taro-code";
 
 export default function Myqr() {
   const { nickName, avatarUrl, qrData } = useSelector(

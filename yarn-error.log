@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add taro-swiper
+  C:\Program Files\nodejs\node.exe D:\nvm\v16.18.0\global\node_modules\yarn\bin\yarn.js add @types/taro3-code
 
 PATH: 
   C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;F:\虚拟机\bin\;C:;Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;%JAVA_HOMR%\bin;C:\TDM-GCC-64\bin;C:\Program Files\dotnet\;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;F:\Git\cmd;F:\BtSoft\panel\script;F:\NetSarang\Xshell 7\;F:\NetSarang\Xftp 7\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\JetBrains\Toolbox\scripts;F:\Git\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools;C:\Users\Administrator\AppData\Local\Android\Sdk\emulator;C:\Users\Administrator\AppData\Local\Android\Sdk\tools;C:\Users\Administrator\AppData\Local\Android\Sdk\tools\bin;C:\gradle-8.0.2\bin;C:\Users\Administrator\AppData\Local\Android\Sdk;E:\apache-tomcat-9.0.76\bin;C:\Users\Administrator\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Administrator\AppData\Local\pnpm;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\JetBrains\Toolbox\scripts;F:\Git\bin;F:\???web?????????\dll;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Administrator\AppData\Local\GitHubDesktop\bin
@@ -14,16 +14,16 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.npmmirror.com/taro-swiper: Not found
-      at Request.params.callback [as _callback] (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
-      at Request.self.callback (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
-      at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
-      at Object.onceWrapper (node:events:641:28)
-      at IncomingMessage.emit (node:events:539:35)
-      at endReadableNT (node:internal/streams/readable:1345:12)
+  Error: https://registry.npm.taobao.org/@types%2ftaro3-code: Not found
+      at Request.params.callback [as _callback] (D:\nvm\v16.18.0\global\node_modules\yarn\lib\cli.js:66145:18)
+      at Request.self.callback (D:\nvm\v16.18.0\global\node_modules\yarn\lib\cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (D:\nvm\v16.18.0\global\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (D:\nvm\v16.18.0\global\node_modules\yarn\lib\cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1358:12)
       at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
@@ -87,7 +87,7 @@ npm manifest:
       "react-redux": "^8.1.2",
       "react-router-dom": "^6.15.0",
       "swiper": "^10.2.0",
-      "taro-code": "^4.0.1"
+      "taro3-code": "^2.2.0"
     },
     "devDependencies": {
       "@babel/core": "^7.8.0",
@@ -11297,10 +11297,10 @@ Lockfile:
       to-buffer "^1.1.1"
       xtend "^4.0.0"
   
-  taro-code@^4.0.1:
-    version "4.0.1"
-    resolved "https://registry.npmmirror.com/taro-code/-/taro-code-4.0.1.tgz#e7d307c2b589a053670cbac8e1caa119faf62e63"
-    integrity sha512-9nyPVNYiKrYOgebB5JuLLNgLA15llvNS/qjNE4Llqetqi9F1J9SaYlFcZnOrJFPJIT3vdETNrC++afjY1XSt0A==
+  taro3-code@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.npmmirror.com/taro3-code/-/taro3-code-2.2.0.tgz#037d959039de892f24e42773fde7066b7a5315e1"
+    integrity sha512-RWUziKAtmL9J3zeB/0uE/5rxFI18LQIsclXOhVrXImxb95o96mHU1bOp7wl/xKeNXgc2WxXf6vzEr8v80nA1og==
   
   terser-webpack-plugin@^5.1.3:
     version "5.3.9"
