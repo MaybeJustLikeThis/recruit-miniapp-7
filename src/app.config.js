@@ -2,7 +2,6 @@ export default defineAppConfig({
   pages: [
     "pages/login/login",
     "pages/user/user",
-    "pages/myqr/myqr",
     "pages/index/index",
     "pages/option/option",
     // option页子页
@@ -11,6 +10,7 @@ export default defineAppConfig({
     "pages/scan/scan",
     "pages/ticket/ticket",
     // user页面子页
+    "pages/myqr/myqr",
     "pages/applicationSubmit/applicationSubmit",
   ],
 
