@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe D:\nvm\v16.18.0\global\node_modules\yarn\bin\yarn.js add taro-px2rpx-loader
+  C:\Program Files\nodejs\node.exe D:\nvm\v16.18.0\global\node_modules\yarn\bin\yarn.js add @types/taro3-code
 
 PATH: 
   C:\Users\29980\AppData\Local\Yarn;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\App\Bandizip\;D:\nvm\v16.18.0\node_modules;global;D:\Git\cmd;D:\Xshell\;D:\Xshell\Xftp\;D:\nvm;C:\Program Files\nodejs;D:\Java\bin;D:\Java\jre\bin;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;D:\nvm\v16.18.0\global\node_modules\yarn\bin;C:\Program Files\Azure Data Studio\bin;D:\微信web开发者工具\dll;C:\Users\29980\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\29980\AppData\Local\Programs\Python\Python311\;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;%NVM_HOME%;%NVM_SYMLINK%;D:\nvm\v16.18.0\global;%IntelliJ IDEA%;C:\Program Files\Azure Data Studio\bin;C:\Program Files (x86)\Tencent\QQGameTempest\Hall.57808\
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/taro-px2rpx-loader: Not found
+  Error: https://registry.npm.taobao.org/@types%2ftaro3-code: Not found
       at Request.params.callback [as _callback] (D:\nvm\v16.18.0\global\node_modules\yarn\lib\cli.js:66145:18)
       at Request.self.callback (D:\nvm\v16.18.0\global\node_modules\yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:513:28)
@@ -85,7 +85,9 @@ npm manifest:
       "react": "^18.0.0",
       "react-dom": "^18.0.0",
       "react-redux": "^8.1.2",
-      "react-router-dom": "^6.15.0"
+      "react-router-dom": "^6.15.0",
+      "swiper": "^10.2.0",
+      "taro3-code": "^2.2.0"
     },
     "devDependencies": {
       "@babel/core": "^7.8.0",
@@ -11251,6 +11253,11 @@ Lockfile:
       dom7 "^3.0.0"
       ssr-window "^3.0.0"
   
+  swiper@^10.2.0:
+    version "10.2.0"
+    resolved "https://registry.npmmirror.com/swiper/-/swiper-10.2.0.tgz#e7369ff56f4e10069f2244a4436f732b8925deb0"
+    integrity sha512-nktQsOtBInJjr3f5DicxC8eHYGcLXDVIGPSon0QoXRaO6NjKnATCbQ8SZsD3dN1Ph1RH4EhVPwSYCcuDRFWHGQ==
+  
   symbol-tree@^3.2.4:
     version "3.2.4"
     resolved "https://registry.npmmirror.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
@@ -11289,6 +11296,11 @@ Lockfile:
       readable-stream "^2.3.0"
       to-buffer "^1.1.1"
       xtend "^4.0.0"
+  
+  taro3-code@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.npmmirror.com/taro3-code/-/taro3-code-2.2.0.tgz#037d959039de892f24e42773fde7066b7a5315e1"
+    integrity sha512-RWUziKAtmL9J3zeB/0uE/5rxFI18LQIsclXOhVrXImxb95o96mHU1bOp7wl/xKeNXgc2WxXf6vzEr8v80nA1og==
   
   terser-webpack-plugin@^5.1.3:
     version "5.3.9"
