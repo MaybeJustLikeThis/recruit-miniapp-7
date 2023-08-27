@@ -10,16 +10,16 @@ function App({ children }) {
   // }),
   useLaunch(() => {
 
-    wx.loadFontFace({
-      family: 'PingFang',
-      source: 'url("https://cd-mapbed.oss-cn-beijing.aliyuncs.com/PingFang_Regular.ttf")',
-      success: () => {
-        console.log('字体加载成功');
-      },
-      fail: () => {
-        console.log('字体加载失败');
-      },
-    });
+    // wx.loadFontFace({
+    //   family: 'PingFang',
+    //   source: 'url("https://cd-mapbed.oss-cn-beijing.aliyuncs.com/PingFang_Regular.ttf")',
+    //   success: () => {
+    //     console.log('字体加载成功');
+    //   },
+    //   fail: () => {
+    //     console.log('字体加载失败');
+    //   },
+    // });
 
 
 
