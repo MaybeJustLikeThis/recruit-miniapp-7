@@ -9,6 +9,6 @@ export default function Index() {
   })
 
   return (
-    <View>我是首页</View>
+    <View className='home'>我是首页111111</View>
   )
 }
