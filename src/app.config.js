@@ -6,6 +6,8 @@ export default defineAppConfig({
     "pages/option/option",
     // option页子页
     "pages/apply/apply",
+    "pages/success/success",
+    "pages/fail/fail",
     "pages/interview/interview",
     "pages/scan/scan",
     "pages/ticket/ticket",
