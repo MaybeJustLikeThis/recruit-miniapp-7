@@ -1,8 +1,10 @@
 export default defineAppConfig({
   pages: [
+    "pages/index/index",
+
     "pages/login/login",
     "pages/user/user",
-    "pages/index/index",
+    // "pages/index/index",
     "pages/option/option",
     // option页子页
     "pages/apply/apply",
