@@ -7,7 +7,48 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { View } from "@tarojs/components";
+
 import './interview.scss'
+import ButtonInterview from "../../Components/ButtonInterview/ButtonInterview";
+import queryLogo from '../../assets/interview/query-logo.png'
+import orderLogo from '../../assets/interview/order-logo.png'
+import Taro from '@tarojs/taro'
+
 export default function Interview() {
-  return <View className="interview">我是面试页面</View>;
+  const toOtherPage = (url) => {
+    Taro.navigateTo({
+      url
+    })
+  }
+  return (
+    <View className="page">
+      <View className="title">面试</View>
+      <View className="box">
+        <View
+          className="box-item"
+          onClick={() => {
+            toOtherPage("/pages/interviewOrder/interviewOrder");
+          }}
+        >
+          <ButtonInterview
+            iconPosition="left"
+            value="预约"
+            iconUrl={orderLogo}
+          ></ButtonInterview>
+        </View>
+        <View
+          className="box-item"
+          onClick={() => {
+            toOtherPage("/pages/interviewQuery/interviewQuery");
+          }}
+        >
+          <ButtonInterview
+            iconPosition="right"
+            value="查询"
+            iconUrl={queryLogo}
+          ></ButtonInterview>
+        </View>
+      </View>
+    </View>
+  );
 }
