@@ -1,6 +1,5 @@
 export default defineAppConfig({
   pages: [
-    "pages/interview/interview",
     "pages/login/login",
     "pages/option/option",
     "pages/index/index",
@@ -11,6 +10,7 @@ export default defineAppConfig({
     "pages/scan/scan",
     "pages/ticket/ticket",
     // 面试预约与查询页面
+    "pages/interview/interview",
     "pages/interviewOrder/interviewOrder",
     "pages/interviewQuery/interviewQuery",
     // user页面子页
