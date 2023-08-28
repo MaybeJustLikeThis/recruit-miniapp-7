@@ -1,7 +1,8 @@
-import { View, Text, Swiper, SwiperItem } from "@tarojs/components";
+import { View, Text, Swiper, SwiperItem,Image} from "@tarojs/components";
 import { useLoad } from "@tarojs/taro";
 import "./index.scss";
 import React, { useState } from 'react';
+import Logo from "../../assets/index/logo.png"
 export default function Index() {
   useLoad(() => {
     console.log("Page loaded.");
@@ -9,12 +10,12 @@ export default function Index() {
   });
   const [currentIndex, setCurrentIndex] = useState(1);
   const items = [
-    { id: 1, name: "红芯书院" },
-    { id: 2, name: "云顶书院" },
-    { id: 3, name: "aa书院" },
-    { id: 4, name: "bb书院" },
-    { id: 5, name: "cc书院" },
-    { id: 6, name: "dd书院" },
+    { id: 1, name: "红芯书院",src:""},
+    { id: 2, name: "",src:Logo },
+    { id: 3, name: "aa书院" ,src:""},
+    { id: 4, name: "bb书院" ,src:""},
+    { id: 5, name: "cc书院" ,src:""},
+    { id: 6, name: "dd书院" ,src:""},
   ];
   const handleChange = (e) => {
     console.log("当前滑块的索引", e.detail.current);
@@ -37,7 +38,6 @@ export default function Index() {
         <View>请选择你所在的</View>
         <h1>「书院」</h1>
       </View>
-
       <Swiper
         className="swiper"
         indicatorColor="#999"
@@ -57,11 +57,14 @@ export default function Index() {
           }
           return (
             <SwiperItem key={item.id}>
-              <View className={className}>{item.name}</View>
+              <View className={className}>{item.name}
+                <Image class="image" src={item.src}></Image>
+              </View>
             </SwiperItem>
           );
         })}
       </Swiper>
+      
     </View>
   );
 }
