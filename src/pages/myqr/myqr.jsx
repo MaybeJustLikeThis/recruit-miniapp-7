@@ -12,7 +12,7 @@ export default function Myqr() {
   );
   
   return (
-    <View>
+    <View className="page">
       <View className="title">我的二维码</View>
       <View className="info-box">
         <View className="box rotate"></View>

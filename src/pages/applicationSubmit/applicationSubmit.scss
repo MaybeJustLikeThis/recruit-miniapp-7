@@ -1,8 +1,15 @@
+.page{
+    height: 100vh;
+    padding-top: 24px;
+    background: url('../../assets/bg/options-bg.png') no-repeat;
+    background-position:  bottom 57px right;
+}
+
 .title{
     font-size: 32px;
     line-height: 36.7px;
     font-weight: 700;
-    margin: 24px 0 64px 32px;
+    margin: 0 0 64px 32px;
 }
 .img{
     width: 100%;
@@ -36,6 +43,7 @@
             margin: 13px 0 16px;
             border: 2px solid #4990E2;
             border-radius: 12px;
+            overflow: hidden;
             .inner-content{
                 width: 64px;
                 height: 94px;

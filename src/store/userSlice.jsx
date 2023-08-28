@@ -5,11 +5,14 @@ const userSlice = createSlice({
   initialState: {
     avatarUrl: "",
     nickName: "Handsome",
+    // 二维码存放的数据
     qrData: {
       name: JSON.stringify({
         name: 'aaaa'
       }),
     },
+    // 申请书照片地址
+    applicationUrl: ''
   },
   reducers: {
     // 操作state的函数 action.payload是调用时传的参数
@@ -18,9 +21,12 @@ const userSlice = createSlice({
       state.nickName = nickName;
       state.avatarUrl = avatarUrl;
     },
+    setApplicationUrl(state, action) {
+      state.applicationUrl = action.payload
+    }
   },
 });
 
-export  const { setUserInfo, } = userSlice.actions;
+export  const { setUserInfo, setApplicationUrl } = userSlice.actions;
 
 export default userSlice

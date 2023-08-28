@@ -42,7 +42,7 @@ export default function User() {
   };
 
   return (
-    <View className="box">
+    <View className="page">
       <View className="top">
         <View className="text-container">
           {getGreet()}
