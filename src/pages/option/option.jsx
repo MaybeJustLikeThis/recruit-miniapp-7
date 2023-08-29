@@ -21,6 +21,17 @@ export default function Tool() {
       url,
     });
   };
+
+  const scanCode = () => {
+    Taro.scanCode({
+      success: (res) => {
+        console.log(res);
+      },
+      fail: (err) => {
+        console.log(err);
+      }
+    })
+  }
   return (
     <View className="page">
       <View className="box">
@@ -62,9 +73,7 @@ export default function Tool() {
         </View>
         <View
           className="box-item"
-          onClick={() => {
-            handlerOptionClick("/pages/scan/scan");
-          }}
+          onClick={scanCode}
         >
           <ButtonOption
             iconPosition="right"
