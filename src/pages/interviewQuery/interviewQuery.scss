@@ -1,0 +1,19 @@
+.page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    margin: 14px 0 48px 32px;
+    font-family: Arial;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 37px;
+    letter-spacing: 0px;
+}
+
+.container{
+    flex-grow: 1;
+    
+}
