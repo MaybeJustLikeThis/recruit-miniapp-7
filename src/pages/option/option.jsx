@@ -10,12 +10,18 @@ import { View } from "@tarojs/components";
 import "./option.scss";
 import Taro from "@tarojs/taro";
 import ButtonOption from "../../Components/ButtonOption/ButtonOption";
-import ticketLogo from '../../assets/options/ticket-logo.png'
-import interviewLogo from "../../assets/options/interview-logo.png";
-import applyLogo from "../../assets/options/apply-logo.png";
-import scanLogo from "../../assets/options/scan-logo.png";
 
 export default function Tool() {
+  const logos = {
+    ticketLogo:
+      "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/ticket-logo.png",
+    interviewLogo:
+      "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/interview-logo.png",
+    applyLogo:
+      "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/apply-logo.png",
+    scanLogo:
+      "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
+  };
   const handlerOptionClick = (url) => {
     Taro.navigateTo({
       url,
@@ -25,7 +31,11 @@ export default function Tool() {
   const scanCode = () => {
     Taro.scanCode({
       success: (res) => {
-        console.log(res);
+        console.log(res.result);
+        Taro.showToast({
+          title: '扫码成功',
+          duration: 1000
+        })
       },
       fail: (err) => {
         console.log(err);
@@ -44,7 +54,7 @@ export default function Tool() {
           <ButtonOption
             iconPosition="left"
             value="抢票"
-            iconUrl={ticketLogo}
+            iconUrl={logos.ticketLogo}
           ></ButtonOption>
         </View>
         <View
@@ -56,7 +66,7 @@ export default function Tool() {
           <ButtonOption
             iconPosition="right"
             value="面试"
-            iconUrl={interviewLogo}
+            iconUrl={logos.interviewLogo}
           ></ButtonOption>
         </View>
         <View
@@ -68,7 +78,7 @@ export default function Tool() {
           <ButtonOption
             iconPosition="left"
             value="报名"
-            iconUrl={applyLogo}
+            iconUrl={logos.applyLogo}
           ></ButtonOption>
         </View>
         <View
@@ -78,7 +88,7 @@ export default function Tool() {
           <ButtonOption
             iconPosition="right"
             value="扫码"
-            iconUrl={scanLogo}
+            iconUrl={logos.scanLogo}
           ></ButtonOption>
         </View>
       </View>

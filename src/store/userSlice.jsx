@@ -4,12 +4,11 @@ const userSlice = createSlice({
   name: "userSlice",
   initialState: {
     avatarUrl: "",
-    nickName: "Handsome",
+    nickName: "",
     // 二维码存放的数据
     qrData: {
-      name: JSON.stringify({
-        name: 'aaaa'
-      }),
+      name: 'llh',
+      age: 19,
     },
     // 申请书照片地址
     applicationUrl: ''

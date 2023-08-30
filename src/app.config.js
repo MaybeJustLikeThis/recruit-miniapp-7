@@ -1,9 +1,8 @@
 export default defineAppConfig({
   pages: [
     "pages/login/login",
-    "pages/option/option",
     "pages/index/index",
-
+    "pages/option/option",
     // 报名成功与否页面
     "pages/apply/apply",
     "pages/success/success",
@@ -16,7 +15,7 @@ export default defineAppConfig({
     "pages/interviewOrder/interviewOrder",
     "pages/itvOrderSuccess/itvOrderSuccess",
     "pages/interviewQuery/interviewQuery",
-    
+
     // user页面子页
     "pages/user/user",
     "pages/myqr/myqr",

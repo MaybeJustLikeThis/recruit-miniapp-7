@@ -18,7 +18,7 @@ export default function Index() {
     { id: 6, name: "dd书院" ,src:""},
   ];
   const handleChange = (e) => {
-    console.log("当前滑块的索引", e.detail.current);
+    // console.log("当前滑块的索引", e.detail.current);
     // currentIndex = e.detail.current;
     if (e.detail.current === 5) {
       setCurrentIndex(0);

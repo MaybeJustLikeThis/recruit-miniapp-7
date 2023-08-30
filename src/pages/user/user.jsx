@@ -26,7 +26,6 @@ export default function User() {
   // 生成对应时间的问候语
   const getGreet = () => {
     const hour = new Date().getHours();
-    console.log(hour);
     let greet = "时间未知";
     if (hour > 6 && hour < 12) greet = "早上好，";
     else if (hour >= 12 && hour < 15) greet = "中午好，";

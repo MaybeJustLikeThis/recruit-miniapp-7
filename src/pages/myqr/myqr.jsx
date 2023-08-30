@@ -10,7 +10,6 @@ export default function Myqr() {
   const { nickName, avatarUrl, qrData } = useSelector(
     (state) => state.userSlice
   );
-  
   return (
     <View className="page">
       <View className="title">我的二维码</View>
@@ -20,7 +19,7 @@ export default function Myqr() {
           <View className="qr-box">
             <View className="qr">
               <QRCode
-                text={qrData}
+                text={JSON.stringify(qrData)}
                 size={160}
                 scale={1}
               ></QRCode>
