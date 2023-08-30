@@ -1,4 +1,4 @@
-import { View, Text, Swiper, SwiperItem,Image} from "@tarojs/components";
+import { View, Text, Swiper, SwiperItem,Image,Button} from "@tarojs/components";
 import { useLoad } from "@tarojs/taro";
 import "./index.scss";
 import React, { useState } from 'react';
@@ -10,12 +10,12 @@ export default function Index() {
   });
   const [currentIndex, setCurrentIndex] = useState(1);
   const items = [
-    { id: 1, name: "红芯书院",src:""},
-    { id: 2, name: "",src:Logo },
-    { id: 3, name: "aa书院" ,src:""},
-    { id: 4, name: "bb书院" ,src:""},
-    { id: 5, name: "cc书院" ,src:""},
-    { id: 6, name: "dd书院" ,src:""},
+    { id: 1, name: "红芯书院",src:null},
+    { id: 2, name: "云顶书院",src:Logo },
+    { id: 3, name: "天脊书院" ,src:null},
+    { id: 4, name: "bb书院" ,src:null},
+    { id: 5, name: "cc书院" ,src:null},
+    { id: 6, name: "dd书院" ,src:null},
   ];
   const handleChange = (e) => {
     // console.log("当前滑块的索引", e.detail.current);
@@ -24,8 +24,16 @@ export default function Index() {
       setCurrentIndex(0);
     } else {
     setCurrentIndex(e.detail.current+1);
-      
     }
+    // let index = e.detail.current+1
+  };
+  console.log("当前书院：",items[currentIndex].name );
+
+  const handleItemClick = (item) => {
+    console.log("点击书院：", item.name);
+    // 这里可以根据需要进行其他处理
+    // setCurrentIndex(item.id-1);
+
   };
 
   return (
@@ -48,7 +56,7 @@ export default function Index() {
         displayMultipleItems={3}
         current={0}
         onChange={handleChange}
-        autoplay
+        
       >
         {items.map((item, index) => {
           let className = "swiper-slide";
@@ -57,14 +65,20 @@ export default function Index() {
           }
           return (
             <SwiperItem key={item.id}>
-              <View className={className}>{item.name}
-                <Image class="image" src={item.src}></Image>
+              <View className={className}  onClick={() => handleItemClick(item)}>
+              {item.src !== null ? <Image class="image" src={item.src} />:item.name}
               </View>
             </SwiperItem>
           );
         })}
       </Swiper>
-      
+      <View>
+        <Button 
+          plain={false}
+          className="submitButton"
+        >
+          确认</Button>
+      </View>
     </View>
   );
 }
