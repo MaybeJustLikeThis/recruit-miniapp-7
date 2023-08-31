@@ -26,16 +26,6 @@ const applySlice = createSlice({
   },
   reducers: {
     setApplyInfo(state, action) {
-      const obj = { ...state, ...action.payload };
-      // obj.cloudId = "2022006301";
-      // Taro.request({
-      //   url: "http://g5vyfd.natappfree.cc/user/save",
-      //   method: "POST",
-      //   data: obj,
-      //   success: (res) => {
-      //     console.log(res);
-      //   },
-      // });
       return { ...state, ...action.payload };
     },
     setDirectionCheck(state, action) {

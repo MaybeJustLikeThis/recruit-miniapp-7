@@ -1,11 +1,19 @@
 import "./apply.scss";
 
-import { View, Image, Form, Text, Input, Picker, Button } from "@tarojs/components";
+import {
+  View,
+  Image,
+  Form,
+  Text,
+  Input,
+  Picker,
+  Button,
+} from "@tarojs/components";
 import ColumnBox from "../../Components/ColumnBox/ColumnBox";
 import { useDispatch, useSelector } from "react-redux";
 import { setApplyInfo, setDirectionCheck } from "../../store/applySlice";
-import Taro from '@tarojs/taro'
-
+import Taro from "@tarojs/taro";
+import { useEffect, useState } from "react";
 
 function Apply() {
   const logo =
@@ -14,6 +22,22 @@ function Apply() {
   // 选择的方向
   const direction = ["开发", "设计", "秘书处"];
   const data = useSelector((state) => state.applySlice);
+
+  // 判断是否是初次进入页面
+  const [isFirstEnter, setisFirstEnter] = useState(true);
+  useEffect(() => {
+    if (!isFirstEnter) {
+      Taro.request({
+        url: "http://g5vyfd.natappfree.cc/user/save",
+        method: "POST",
+        data: obj,
+        success: (res) => {
+          console.log(res);
+        },
+      });
+    }
+  }, [data, isFirstEnter]);
+
   const dispatch = useDispatch();
   // 获取选择的方向并进行展示
   const { directionCheck } = useSelector((state) => state.applySlice);
@@ -21,11 +45,14 @@ function Apply() {
     const index = e.target.value;
     dispatch(setDirectionCheck(direction[index]));
   };
+
   // 提交表单
   const formSubmit = (e) => {
     e.detail.value.direction = directionCheck;
     dispatch(setApplyInfo(e.detail.value));
+    setisFirstEnter(false);
   };
+
   return (
     <View className="page">
       <View className="info-box">
