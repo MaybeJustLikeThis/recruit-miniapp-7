@@ -11,10 +11,16 @@ import Taro from "@tarojs/taro";
 import "./login.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenId, setUserInfo } from "../../store/userSlice";
+import request  from '../../httpService/request';
 export default function Login() {
   const logoUrl =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png";
   const dispatch = useDispatch();
+  const test = () => {
+    // Taro.switchTab({
+    //   url: "/pages/index/index",
+    // });
+  }
   const userData = useSelector((state) => state.userSlice);
   const toIndex = () => {
     Taro.getUserProfile({
@@ -23,23 +29,14 @@ export default function Login() {
         // 获取用户信息
         dispatch(setUserInfo(data.userInfo));
         Taro.login({
-          success: (data) => {
-            // Taro.request({
-            //   url: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png",
-            //   data: {
-            //     code: data.code,
-            //   },
-            //   method: "POST",
-            //   success: (res) => {
-            //     if (res.statusCode == 200) {
-            //       console.log(res);
-            //       dispatch(setOpenId(res.data.msg));
-                  // Taro.switchTab({
-                  //   url: "/pages/index/index",
-                  // });
-            //     }
-            //   },
-            // });
+           async success(data) {
+            const userInfo =  await request(
+              "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png",
+              test,
+              'POST',
+              {code:data.code}
+            );
+            dispatch(setOpenId(userInfo));
             Taro.switchTab({
               url: "/pages/index/index",
             });
