@@ -2,12 +2,13 @@ import { View, Image } from "@tarojs/components";
 import "./applicationSubmit.scss";
 import ButtonSubmit from "../../Components/ButtonSubmit/ButtonSubmit";
 import ColumnBox from "../../Components/ColumnBox/ColumnBox";
-import submitLogo from "../../assets/icons/applicationSubmitBlue.png";
 import Taro from "@tarojs/taro";
 import { useDispatch, useSelector } from "react-redux";
 import { setApplicationUrl } from "../../store/userSlice";
 
 export default function ApplicationSubmit() {
+  const submitLogo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/applicationSubmitBlue.png";
   const { applicationUrl } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 

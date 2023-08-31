@@ -2,13 +2,15 @@ import "./apply.scss";
 
 import { View, Image, Form, Text, Input, Picker, Button } from "@tarojs/components";
 import ColumnBox from "../../Components/ColumnBox/ColumnBox";
-import logo from "../../assets/apply/apply-logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setApplyInfo, setDirectionCheck } from "../../store/applySlice";
 import Taro from '@tarojs/taro'
 
 
 function Apply() {
+  const logo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png";
+
   // 选择的方向
   const direction = ["开发", "设计", "秘书处"];
   const data = useSelector((state) => state.applySlice);

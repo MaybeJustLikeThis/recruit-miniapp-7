@@ -10,11 +10,14 @@ import { View } from "@tarojs/components";
 
 import './interview.scss'
 import ButtonInterview from "../../Components/ButtonInterview/ButtonInterview";
-import queryLogo from '../../assets/interview/query-logo.png'
-import orderLogo from '../../assets/interview/order-logo.png'
 import Taro from '@tarojs/taro'
 
 export default function Interview() {
+  const queryLogo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/query-logo.png";
+  const orderLogo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/order-logo.png";
+
   const toOtherPage = (url) => {
     Taro.navigateTo({
       url

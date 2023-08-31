@@ -2,11 +2,12 @@ import { View, Text, Swiper, SwiperItem,Image,Button} from "@tarojs/components";
 import { useLoad } from "@tarojs/taro";
 import "./index.scss";
 import React, { useState } from 'react';
-import Logo from "../../assets/index/logo.png"
+
 export default function Index() {
+  const Logo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/logo.png";
   useLoad(() => {
     console.log("Page loaded.");
-
   });
   const [currentIndex, setCurrentIndex] = useState(1);
   const items = [

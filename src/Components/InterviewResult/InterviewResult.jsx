@@ -1,9 +1,14 @@
 import { View, Image } from "@tarojs/components";
 import styles from "./InterviewResult.module.scss";
-import successLogo from "../../assets/interview/resultSuccess.png";
-import failLogo from '../../assets/interview/resultFail.png'
-import nullLogo from '../../assets/interview/resultNull.png'
+
 export default function InterviewResult(props) {
+  const successLogo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/resultSuccess.png";
+  const failLogo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/resultFail.png";
+  const nullLogo =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/resultNull.png";
+
   const showInfo = (type) => {
     if (type === "success") {
       return (
