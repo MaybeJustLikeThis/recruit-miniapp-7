@@ -6,13 +6,16 @@
  * @FilePath: \yzyy\src\pages\login\login.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { View, Button } from "@tarojs/components";
+import { View, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import "./login.scss";
-import { useDispatch } from "react-redux";
-import { setUserInfo } from "../../store/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenId, setUserInfo } from "../../store/userSlice";
 export default function Login() {
+  const logoUrl =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png";
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.userSlice);
   const toIndex = () => {
     Taro.getUserProfile({
       desc: "展示头像与昵称",
@@ -21,23 +24,24 @@ export default function Login() {
         dispatch(setUserInfo(data.userInfo));
         Taro.login({
           success: (data) => {
-            Taro.request({
-              url: "https://api.weixin.qq.com/sns/jscode2session",
-              data: {
-                js_code: data.code,
-                appid: "wx0df8511230c13054",
-                secret: "64e882d75203e6c45678c02a37a84ada",
-                grant_type: "authorization_code",
-              },
-              success: (res) => {
-                console.log(res);
-                // if (res.statusCode == 200) {
-                //   console.log("登录成功@@@", res.data);
-                //   // Taro.switchTab({
-                //   //   url: "/pages/index/index",
-                //   // });
-                // }
-              },
+            // Taro.request({
+            //   url: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png",
+            //   data: {
+            //     code: data.code,
+            //   },
+            //   method: "POST",
+            //   success: (res) => {
+            //     if (res.statusCode == 200) {
+            //       console.log(res);
+            //       dispatch(setOpenId(res.data.msg));
+                  // Taro.switchTab({
+                  //   url: "/pages/index/index",
+                  // });
+            //     }
+            //   },
+            // });
+            Taro.switchTab({
+              url: "/pages/index/index",
             });
           },
         });
@@ -49,8 +53,15 @@ export default function Login() {
   };
   return (
     <View>
-      <View>我是登录页面</View>
-      <Button onClick={toIndex}>登录</Button>
+      <View className="page">
+        <View className="icon">
+          <Image className="img" src={logoUrl}></Image>
+        </View>
+        <View className="name">「云昭云曜」</View>
+        <View onClick={toIndex} className="button">
+          进入
+        </View>
+      </View>
     </View>
   );
 }

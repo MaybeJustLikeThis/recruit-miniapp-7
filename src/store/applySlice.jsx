@@ -7,6 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { createSlice } from "@reduxjs/toolkit";
+import Taro from "@tarojs/taro";
 
 const applySlice = createSlice({
   name: "applySlice",
@@ -14,18 +15,31 @@ const applySlice = createSlice({
     name: "",
     gender: "",
     direction: "",
-    proClass: "",
+    major: "",
     phone: "",
     qq: "",
     email: "",
     directionCheck: "",
+    academy: "云顶书院",
+    school: "太原理工大学",
+    studentNumber: "",
   },
   reducers: {
     setApplyInfo(state, action) {
+      const obj = { ...state, ...action.payload };
+      // obj.cloudId = "2022006301";
+      // Taro.request({
+      //   url: "http://g5vyfd.natappfree.cc/user/save",
+      //   method: "POST",
+      //   data: obj,
+      //   success: (res) => {
+      //     console.log(res);
+      //   },
+      // });
       return { ...state, ...action.payload };
     },
     setDirectionCheck(state, action) {
-      console.log(action.payload);
+      // console.log(action.payload);
       return { ...state, directionCheck: action.payload };
     },
   },

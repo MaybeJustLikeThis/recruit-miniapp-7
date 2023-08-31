@@ -9,7 +9,7 @@
 import { View, Text, Image } from "@tarojs/components";
 import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
-import Taro from "@tarojs/taro";
+import Taro,{useReady} from "@tarojs/taro";
 
 // icon图标引入
 import logo from "../../assets/icons/logo.png";
@@ -20,8 +20,22 @@ import qr from "../../assets/icons/qr.png";
 import "./user.scss";
 
 export default function User() {
+  const {openid} = useSelector(state=>state.userSlice)
+  useReady(() => {
+    Taro.request({
+      url: "http://g5vyfd.natappfree.cc/user/show",
+      data: {
+        cloudId: "2022006301",
+      },
+      success: (res) => {
+        console.log(res, "发送请求成功");
+      },
+    });
+  })
   // 获取用户昵称和头像
   const { nickName, avatarUrl } = useSelector((state) => state.userSlice);
+
+
 
   // 生成对应时间的问候语
   const getGreet = () => {

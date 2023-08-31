@@ -7,14 +7,17 @@ export default defineAppConfig({
     "pages/apply/apply",
     "pages/success/success",
     "pages/fail/fail",
-    "pages/scan/scan",
-    "pages/ticket/ticket",
 
     // 面试预约与查询页面
     "pages/interview/interview",
     "pages/interviewOrder/interviewOrder",
     "pages/itvOrderSuccess/itvOrderSuccess",
     "pages/interviewQuery/interviewQuery",
+
+    // 抢票
+    "pages/ticket/ticket",
+    "pages/ticketDetail/ticketDetail",
+    "pages/ticketGot/ticketGot",
 
     // user页面子页
     "pages/user/user",

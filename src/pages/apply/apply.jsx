@@ -10,20 +10,20 @@ import Taro from '@tarojs/taro'
 
 function Apply() {
   // 选择的方向
-  const direction = ['开发', '设计', '秘书处']
-
-  const dispatch = useDispatch()
+  const direction = ["开发", "设计", "秘书处"];
+  const data = useSelector((state) => state.applySlice);
+  const dispatch = useDispatch();
   // 获取选择的方向并进行展示
-  const {directionCheck} = useSelector(state=>state.applySlice)
+  const { directionCheck } = useSelector((state) => state.applySlice);
   const directionChoose = (e) => {
-    const index = e.target.value
+    const index = e.target.value;
     dispatch(setDirectionCheck(direction[index]));
-  }
+  };
   // 提交表单
   const formSubmit = (e) => {
     e.detail.value.direction = directionCheck;
-    dispatch(setApplyInfo(e.detail.value))
-  }
+    dispatch(setApplyInfo(e.detail.value));
+  };
   return (
     <View className="page">
       <View className="info-box">
@@ -41,6 +41,14 @@ function Apply() {
                 <Input name="gender" className="top-input"></Input>
               </View>
               <View className="flex-box">
+                <Text>学号</Text>
+                <Input
+                  name="studentNumber"
+                  className="long-input"
+                  placeholder="请填写"
+                ></Input>
+              </View>
+              <View className="flex-box">
                 <Text>方向</Text>
                 <Picker
                   range={direction}
@@ -53,7 +61,7 @@ function Apply() {
               <View className="flex-box">
                 <Text>专业班级</Text>
                 <Input
-                  name="proClass"
+                  name="major"
                   className="long-input"
                   placeholder="例：软件2139"
                 ></Input>
@@ -82,7 +90,9 @@ function Apply() {
                   placeholder="请填写"
                 ></Input>
               </View>
-              <Button formType="submit" className="submit">提交</Button>
+              <Button formType="submit" className="submit">
+                提交
+              </Button>
             </Form>
           </View>
         </ColumnBox>

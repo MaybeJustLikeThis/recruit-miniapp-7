@@ -11,7 +11,8 @@ const userSlice = createSlice({
       age: 19,
     },
     // 申请书照片地址
-    applicationUrl: ''
+    applicationUrl: '',
+    openid: '',
   },
   reducers: {
     // 操作state的函数 action.payload是调用时传的参数
@@ -22,10 +23,14 @@ const userSlice = createSlice({
     },
     setApplicationUrl(state, action) {
       state.applicationUrl = action.payload
+    },
+    setOpenId(state, action) {
+      const obj = { ...state, openid: action.payload }
+      return obj;
     }
   },
 });
 
-export  const { setUserInfo, setApplicationUrl } = userSlice.actions;
+export  const { setUserInfo, setApplicationUrl, setOpenId } = userSlice.actions;
 
 export default userSlice
