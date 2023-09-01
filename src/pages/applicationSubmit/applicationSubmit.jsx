@@ -17,6 +17,21 @@ export default function ApplicationSubmit() {
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: (res) => {
+        console.log(res.tempFilePaths,'临时图片路径');
+        Taro.uploadFile({
+          url: "http://t4gbf9.natappfree.cc/register/upload",
+          filePath: res.tempFilePaths[0],
+          name: "file",
+          formData: {
+            id: 2022006301,
+          },
+          header: {
+            "content-type": "multipart/form-data",
+          },
+          success: (res) => {
+            console.log("请求成功", JSON.parse(res.data));
+          },
+        });
         dispatch(setApplicationUrl(res.tempFilePaths));
       },
       fail: (err) => {

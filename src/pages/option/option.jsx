@@ -10,6 +10,7 @@ import { View } from "@tarojs/components";
 import "./option.scss";
 import Taro from "@tarojs/taro";
 import ButtonOption from "../../Components/ButtonOption/ButtonOption";
+import request from "../../httpService/request";
 
 export default function Tool() {
   const logos = {
@@ -19,8 +20,7 @@ export default function Tool() {
       "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/interview-logo.png",
     applyLogo:
       "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/apply-logo.png",
-    scanLogo:
-      "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
+    scanLogo: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
   };
   const handlerOptionClick = (url) => {
     Taro.navigateTo({
@@ -30,18 +30,34 @@ export default function Tool() {
 
   const scanCode = () => {
     Taro.scanCode({
-      success: (res) => {
-        console.log(res.result);
-        Taro.showToast({
-          title: '扫码成功',
-          duration: 1000
-        })
+      success: async (res) => {
+        console.log(res.result, "扫码的结果");
+        const response = await request(
+          "http://101.7.160.182:9091/checkin/parse",
+          {
+            scanInfo: res.result,
+          },
+          "POST"
+        );
+        console.log(response, "发送请求成功");
+        if (response.data === true) {
+          Taro.showToast({
+            title: "扫码成功",
+            duration: 2000,
+          });
+        } else {
+          Taro.showToast({
+            title: "扫码失败",
+            icon:'error',
+            duration: 2000,
+          });
+        }
       },
       fail: (err) => {
         console.log(err);
-      }
-    })
-  }
+      },
+    });
+  };
   return (
     <View className="page">
       <View className="box">
@@ -81,10 +97,7 @@ export default function Tool() {
             iconUrl={logos.applyLogo}
           ></ButtonOption>
         </View>
-        <View
-          className="box-item"
-          onClick={scanCode}
-        >
+        <View className="box-item" onClick={scanCode}>
           <ButtonOption
             iconPosition="right"
             value="扫码"

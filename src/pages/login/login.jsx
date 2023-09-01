@@ -30,13 +30,13 @@ export default function Login() {
         dispatch(setUserInfo(data.userInfo));
         Taro.login({
            async success(data) {
-            const userInfo =  await request(
-              "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png",
-              test,
-              'POST',
-              {code:data.code}
-            );
-            dispatch(setOpenId(userInfo));
+            // const userInfo =  await request(
+            //   "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png",
+            //   test,
+            //   'POST',
+            //   {code:data.code}
+            // );
+            // dispatch(setOpenId(userInfo));
             Taro.switchTab({
               url: "/pages/index/index",
             });

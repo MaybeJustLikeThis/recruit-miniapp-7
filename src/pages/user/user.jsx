@@ -18,22 +18,20 @@ import applicationSubmit from "../../assets/icons/ApplicationSubmit.png";
 import qr from "../../assets/icons/qr.png";
 
 import "./user.scss";
+import request from "../../httpService/request";
 
 export default function User() {
   const { openid } = useSelector(state => state.userSlice)
   const data = useSelector(state => state.applySlice)
   console.log(data);
-  useReady(() => {
-    // Taro.request({
-    //   url: "http://g5vyfd.natappfree.cc/user/show",
-    //   data: {
-    //     cloudId: "2022006301",
-    //   },
-    //   success: (res) => {
-    //     console.log(res, "发送请求成功");
-    //   },
-    // });
-
+  useReady(async () => {
+    const response = await request(
+      "http://t4gbf9.natappfree.cc/user/show",
+      {
+        cloudId: 2022006301,
+      },
+    );
+    console.log(response);
   })
   // 获取用户昵称和头像
   const { nickName, avatarUrl } = useSelector((state) => state.userSlice);
