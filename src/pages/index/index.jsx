@@ -2,7 +2,8 @@ import { View, Text, Swiper, SwiperItem,Image,Button} from "@tarojs/components";
 import { useLoad } from "@tarojs/taro";
 import "./index.scss";
 import React, { useState } from 'react';
-
+import request from "../../httpService/request";
+import Taro from "@tarojs/taro";
 export default function Index() {
   const Logo =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/logo.png";
@@ -35,6 +36,31 @@ export default function Index() {
     // 这里可以根据需要进行其他处理
     // setCurrentIndex(item.id-1);
 
+  };
+  const handleConfirmClick = async () => {
+    console.log("当前确认书院：", items[currentIndex].name);
+      // const response = await request(
+      //   "http://fi2f2z.natappfree.cc/college/selectAcademy",
+      //   { academyId: items[currentIndex].name },
+      //   'POST' 
+      // ).catch((err) => {
+      //   console.log(err);
+      // });
+      // console.log(response,'请求成功');
+      
+      //判断点击是否是云顶书院，是的话跳转到detail页面
+      if (items[currentIndex].name === "云顶书院") {
+        Taro.navigateTo({
+          url: '/pages/index/detail/detail'
+        })
+      }
+      else {
+        Taro.showToast({
+          title: '该书院暂未开放',
+          icon: 'none',
+          duration: 2000
+        })
+      }
   };
 
   return (
@@ -77,6 +103,7 @@ export default function Index() {
         <Button 
           plain={false}
           className="submitButton"
+          onClick={handleConfirmClick}
         >
           确认</Button>
       </View>

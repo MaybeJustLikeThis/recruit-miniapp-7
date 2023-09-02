@@ -3,6 +3,7 @@ export default defineAppConfig({
     // "pages/ticket/ticket",
     "pages/login/login",
     "pages/index/index",
+    "pages/index/detail/detail",
     "pages/option/option",
     // 报名成功与否页面
     "pages/apply/apply",
