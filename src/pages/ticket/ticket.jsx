@@ -1,7 +1,7 @@
 import { View } from "@tarojs/components";
 import "./ticket.scss";
 import TicketBox from "../../Components/TicketBox/TicketBox";
-import Taro,{useReady} from "@tarojs/taro";
+import Taro, { useReady } from "@tarojs/taro";
 import { useEffect } from "react";
 import request from "../../httpService/request";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,36 +9,31 @@ import { setLectures } from "../../store/ticketSlice";
 export default function Ticket() {
   const dispatch = useDispatch();
   const { lectures } = useSelector((state) => state.ticketSlice);
-  // useEffect有问题
-  // useEffect(() => {
-  //   const response = request("http://3xadec.natappfree.cc/ticket/allLecture");
-  //   dispatch(setLectures(response.data));
-  //   console.log(response.data, "请求成功");
-  // });
-  useReady(async() => {
-    const response = await request("http://3xadec.natappfree.cc/ticket/allLecture");
+  useReady(async () => {
+    const response = await request(`/miniapp/ticket/allLecture`);
     dispatch(setLectures(response.data));
-    console.log(response.data, "请求成功");
-  })
+  });
   // 根据信息展示票的多少
-  // const showTicketBox = (arr) => {
-  //   if (arr.length === 0) {
-  //     return (<View>暂无宣讲会发布</View>)
-  //   } else {
-  //     arr.map((item, index) => {
-  //       return (
-  //         <TicketBox
-  //           title={item.}
-  //           name={item.}
-  //           time={item.}
-  //           position="大数据学院九楼 数港报告厅"
-  //           type="null"
-  //           ticket_id:{item.ticket_id}
-  //         ></TicketBox>
-  //       );
-  //     })
-  //   }
-  // };
+  const showTicketBox = (arr) => {
+    if (arr.length === 0) {
+      return <View>暂无宣讲会发布</View>;
+    } else {
+      return arr.map((item, index) => {
+        return (
+          <View className="info-box">
+            <TicketBox
+              title={item.lectureTheme}
+              name={item.speaker}
+              time={item.lectureTime}
+              position="大数据学院九楼 数港报告厅"
+              type="null"
+              ticket_id={item.lectureId}
+            ></TicketBox>
+          </View>
+        );
+      });
+    }
+  };
   const toTicketGot = () => {
     Taro.navigateTo({
       url: "/pages/ticketGot/ticketGot",
@@ -52,17 +47,7 @@ export default function Ticket() {
           已抢的票
         </View>
       </View>
-      <View className="info-container">
-        <View className="info-box">
-          <TicketBox
-            title="第一次宣讲大会"
-            name="李林涛"
-            time='2213d'
-            position="大数据学院九楼 数港报告厅"
-            type="null"
-          ></TicketBox>
-        </View>
-      </View>
+      <View className="info-container">{showTicketBox(lectures)}</View>
     </View>
   );
 }

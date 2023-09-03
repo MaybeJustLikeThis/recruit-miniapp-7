@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setApplyInfo, setDirectionCheck } from "../../store/applySlice";
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
+import request from "../../httpService/request";
 
 function Apply() {
   const logo =
@@ -27,20 +28,13 @@ function Apply() {
   const [isFirstEnter, setisFirstEnter] = useState(true);
   useEffect(() => {
     if (!isFirstEnter) {
-      Taro.request({
-        url: "http://g5vyfd.natappfree.cc/user/save",
-        method: "POST",
-        data: obj,
-        success: (res) => {
-          console.log(res);
-        },
-      });
+      request("/miniapp/user/save", data, "POST");
     }
   }, [data, isFirstEnter]);
 
   const dispatch = useDispatch();
   // 获取选择的方向并进行展示
-  const { directionCheck } = useSelector((state) => state.applySlice);
+  const { directionCheck } = data;
   const directionChoose = (e) => {
     const index = e.target.value;
     dispatch(setDirectionCheck(direction[index]));
@@ -51,6 +45,7 @@ function Apply() {
     e.detail.value.direction = directionCheck;
     dispatch(setApplyInfo(e.detail.value));
     setisFirstEnter(false);
+    Taro.switchTab({url:"/pages/user/user"})
   };
 
   return (

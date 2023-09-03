@@ -32,12 +32,13 @@
         margin-top: 12px;
         justify-content: space-between;
         .title{
+            overflow: hidden;
             color: rgba(73, 144, 226, 1);
             width: 176px;
             font-family: Arial;
             font-size: 22px;
             font-weight: 700;
-            line-height: 25px;
+            line-height: 36px;
             margin-left: 20px;
         }
         .icon{

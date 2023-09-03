@@ -9,7 +9,7 @@ import { setQRData } from "../../store/ticketSlice";
 
 export default function TicketDetail() {
   const { QRData } = useSelector((state) => state.ticketSlice);
-  const { user_id } = useSelector((state) => state.userSlice);
+  const { user_id, openid } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
   const [data, setData] = useState({});
@@ -19,19 +19,20 @@ export default function TicketDetail() {
       setData(data);
     });
   }, []);
+
   useDidShow(async () => {
     const response = await request("http://101.7.160.182:9091/checkin/qrcode", {
-      openId: "openid",
+      openId: openid,
       eventName: "宣讲会",
       expireTime: 60000,
     });
     dispatch(setQRData(response.data));
-    console.log(responese, "二维码请求");
+    console.log(response, "二维码请求");
   });
   // 抢票
   const getTicket = async () => {
     const response = await request(
-      "http://3xadec.natappfree.cc/ticket/grab",
+      "/miniapp/checkin/qrcode",
       {
         ticket_id: data.ticket_id,
         user_id,
@@ -40,10 +41,10 @@ export default function TicketDetail() {
     );
     console.log(response.data, "抢票请求成功");
     if (response.data) {
-      Taro.showToast({ title: "抢票成功", icon: "success",duration:2000 });
+      Taro.showToast({ title: "抢票成功", icon: "success", duration: 2000 });
       setTimeout(() => {
-        Taro.switchTab({url:'/pages/option/option'})
-      },2000)
+        Taro.switchTab({ url: "/pages/option/option" });
+      }, 2000);
     } else {
       Taro.showToast({ title: "没有抢到票", icon: "error" });
     }
@@ -76,7 +77,7 @@ export default function TicketDetail() {
           false
         ) : (
           <View>
-            <View className="text">内容介绍:</View>
+            <View className="text">内容介绍:{data.title}</View>
             <View className="text-box text">{data.content || "Null"}</View>
           </View>
         )}

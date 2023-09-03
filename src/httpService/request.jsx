@@ -16,4 +16,16 @@ const request = async (url, data = {}, method = "GET") => {
   }
 };
 
+const interceptor = function (chain) {
+  const requestParams = chain.requestParams;
+  const { url } = requestParams;
+  const baseUrl = "http://ubfcw3.natappfree.cc";
+  const newUrl = baseUrl + url
+  console.log(newUrl,'新的路劲');
+  requestParams.url = newUrl
+  return chain.proceed(requestParams);
+}
+
+Taro.addInterceptor(interceptor);
+
 export default request;

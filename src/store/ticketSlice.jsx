@@ -5,7 +5,10 @@ const ticketSlice = createSlice({
     initialState: {
     //   加密数据
         QRData: '',
-        lectures:[]
+        // 宣讲会
+        lectures: [],
+        // 抢到的票
+        ticketGot:[],
     },
     reducers: {
         setQRData: (state,action) => {
@@ -16,9 +19,13 @@ const ticketSlice = createSlice({
         setLectures: (state, action) => {
             const obj = { ...state, lectures: action.payload }
             return obj
+        },
+        setTicketGot: (state, action) => {
+            const obj = { ...state, TicketGot: action.payload }
+            return obj
         }
     }
 });
 
 export default ticketSlice;
-export const { setQRData, setLectures } = ticketSlice.actions;
+export const { setQRData, setLectures, setTicketGot } = ticketSlice.actions;

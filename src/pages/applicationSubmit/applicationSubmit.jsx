@@ -9,7 +9,7 @@ import { setApplicationUrl } from "../../store/userSlice";
 export default function ApplicationSubmit() {
   const submitLogo =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/applicationSubmitBlue.png";
-  const { applicationUrl } = useSelector((state) => state.userSlice);
+  const { applicationUrl, user_id } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
   const submitImg = () => {
@@ -17,20 +17,22 @@ export default function ApplicationSubmit() {
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: (res) => {
-        console.log(res.tempFilePaths,'临时图片路径');
-        Taro.uploadFile({
-          url: "http://t4gbf9.natappfree.cc/register/upload",
-          filePath: res.tempFilePaths[0],
-          name: "file",
-          formData: {
-            id: 2022006301,
-          },
-          header: {
-            "content-type": "multipart/form-data",
-          },
-          success: (res) => {
-            console.log("请求成功", JSON.parse(res.data));
-          },
+        console.log(res.tempFilePaths, "临时图片路径");
+        res.tempFilePaths.map((item) => {
+          Taro.uploadFile({
+            url: "/miniapp/register/upload",
+            filePath: item,
+            name: "file",
+            formData: {
+              id: user_id,
+            },
+            header: {
+              "content-type": "multipart/form-data",
+            },
+            success: (res) => {
+              console.log("请求成功", res);
+            },
+          });
         });
         dispatch(setApplicationUrl(res.tempFilePaths));
       },
@@ -42,12 +44,16 @@ export default function ApplicationSubmit() {
   const previewImg = (applicationUrl) => {
     Taro.previewImage({
       urls: applicationUrl,
-    })
-  }
+    });
+  };
   const showImgOrSubmit = (applicationUrl) => {
     if (applicationUrl != "") {
       return (
-        <Image className="img" src={applicationUrl[0]} onClick={()=>previewImg(applicationUrl)}></Image>
+        <Image
+          className="img"
+          src={applicationUrl[0]}
+          onClick={() => previewImg(applicationUrl)}
+        ></Image>
       );
     } else {
       return (

@@ -10,6 +10,7 @@ import { View, Text, Image, Input } from "@tarojs/components";
 import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
 import Taro, { useReady } from "@tarojs/taro";
+import {useState} from "react";
 
 // icon图标引入
 import logo from "../../assets/icons/logo.png";
@@ -19,18 +20,23 @@ import qr from "../../assets/icons/qr.png";
 
 import "./user.scss";
 import request from "../../httpService/request";
+import { setUserInfo } from "../../store/userSlice";
 
 export default function User() {
   const dispatch = useDispatch();
+  const [info, setInfo] = useState('');
   const { openid } = useSelector((state) => state.userSlice);
-  const data = useSelector((state) => state.applySlice);
-  console.log(data);
+  
   useReady(async () => {
-    const response = await request("http://t4gbf9.natappfree.cc/user/show", {
+    const response = await request("/miniapp/user/show", {
       cloudId: openid,
     });
-    console.log(response);
+    console.log(response,'获取用户数据');
+    const obj = { openid: response.data.cloudId || null, user_id: response.data.id || null};
+    dispatch(setUserInfo(obj));
+    setInfo(response.data)
   });
+
   // 获取用户昵称和头像
   const { nickName, avatarUrl } = useSelector((state) => state.userSlice);
 
@@ -56,7 +62,7 @@ export default function User() {
         <View className="text-container">
           {getGreet()}
           <Text className="nickname">
-            {nickName === "" ? '同学' : nickName}
+            {nickName === "" ? "同学" : nickName}
           </Text>
         </View>
         <View className="profile-photo">
@@ -77,17 +83,17 @@ export default function User() {
         <View className="info info-up">
           <View className="info-box">
             <View className="info-box-top">
-              <View className="name">耶耶耶</View>
+              <View className="name">{ info.name|| '暂未报名' }</View>
               <View className="academy">
-                <View className="school">云顶书院</View>
-                <View className="direction">设计方向</View>
+                <View className="school">{ info.academy }</View>
+                <View className="direction">{ info.direction }</View>
               </View>
             </View>
             <View className="info-container">
-              <View>专业班级：软件2139</View>
-              <View>手机号：155522222222</View>
-              <View>QQ：5545454</View>
-              <View>邮箱：12154512125@qq.com</View>
+              <View>专业班级：{ info.major }</View>
+              <View>手机号：{ info.phone }</View>
+              <View>QQ：{ info.qq }</View>
+              <View>邮箱：{ info.email }</View>
             </View>
           </View>
           <View className="icon">

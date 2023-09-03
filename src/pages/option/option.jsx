@@ -27,7 +27,7 @@ export default function Tool() {
     scanLogo: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
   };
   const handlerOptionClick = (url,type) => {
-    if (user_id === "" && type!='apply') {
+    if (user_id === null && type!='apply') {
       Taro.showToast({icon:'error',title:'请先报名填写信息'})
     } else {
       Taro.navigateTo({
@@ -57,7 +57,7 @@ export default function Tool() {
             title: "扫码成功",
             duration: 2000,
           });
-        } else {
+        } else { 
           Taro.showToast({
             title: "扫码失败",
             icon: "error",
