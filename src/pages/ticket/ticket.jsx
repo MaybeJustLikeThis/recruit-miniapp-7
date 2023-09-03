@@ -20,12 +20,25 @@ export default function Ticket() {
     dispatch(setLectures(response.data));
     console.log(response.data, "请求成功");
   })
-
-  const showTicketBox = (arr) => {
-    if (arr.length === 0) {
-      return 1
-    }
-  };
+  // 根据信息展示票的多少
+  // const showTicketBox = (arr) => {
+  //   if (arr.length === 0) {
+  //     return (<View>暂无宣讲会发布</View>)
+  //   } else {
+  //     arr.map((item, index) => {
+  //       return (
+  //         <TicketBox
+  //           title={item.}
+  //           name={item.}
+  //           time={item.}
+  //           position="大数据学院九楼 数港报告厅"
+  //           type="null"
+  //           ticket_id:{item.ticket_id}
+  //         ></TicketBox>
+  //       );
+  //     })
+  //   }
+  // };
   const toTicketGot = () => {
     Taro.navigateTo({
       url: "/pages/ticketGot/ticketGot",

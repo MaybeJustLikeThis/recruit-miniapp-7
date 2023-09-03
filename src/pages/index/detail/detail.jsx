@@ -12,10 +12,14 @@ import "./detail.scss";
 // import request from "../../httpService/request";
 import newsCenter from "../../../assets/icons/newsCenter.png";
 import aboutAcademy from "../../../assets/icons/aboutAcademy.png";
-import new1 from "../../../assets/icons/new1.png";
-import new2 from "../../../assets/icons/new2.png";
-import new3 from "../../../assets/icons/new3.png";
+
 export default function Index() {
+  const new1 =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/new1.png";
+  const new2 =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/new2.png";
+  const new3 =
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/new3.png";
   const Logo = "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/logo.png";
   useLoad(() => {
     console.log("Page loaded.");

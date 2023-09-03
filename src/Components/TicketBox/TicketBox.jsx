@@ -4,6 +4,7 @@ import Taro from '@tarojs/taro'
 
 export default function TicketBox(props) {
     const iconSrc = 'https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png'
+    // 携带参数跳转页面
     const toDetail = () => {
         Taro.navigateTo({
             url: '/pages/ticketDetail/ticketDetail',

@@ -32,9 +32,6 @@ export default defineAppConfig({
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "black",
-    // fonts: {
-    //   'PingFang': 'url(./assets/PingFang Regular.otf)',
-    // },
   },
 
   tabBar: {
@@ -45,7 +42,7 @@ export default defineAppConfig({
     borderStyle: "black",
     list: [
       {
-        pagePath: "pages/index/index",
+        pagePath: "pages/index/detail/detail",
         text: "首页",
         iconPath: "assets/icons/index.png",
         selectedIconPath: "assets/icons/selectIndex.png",

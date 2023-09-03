@@ -50,7 +50,7 @@ export default function Index() {
       
       //判断点击是否是云顶书院，是的话跳转到detail页面
       if (items[currentIndex].name === "云顶书院") {
-        Taro.navigateTo({
+        Taro.switchTab({
           url: '/pages/index/detail/detail'
         })
       }

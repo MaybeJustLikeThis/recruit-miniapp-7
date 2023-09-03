@@ -11,8 +11,12 @@ import "./option.scss";
 import Taro from "@tarojs/taro";
 import ButtonOption from "../../Components/ButtonOption/ButtonOption";
 import request from "../../httpService/request";
+import { useSelector } from "react-redux";
 
 export default function Tool() {
+  const { user_id, isAdmin } = useSelector((state) => state.userSlice);
+  console.log(user_id === "", isAdmin === "", "进入页面获取结果");
+
   const logos = {
     ticketLogo:
       "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/ticket-logo.png",
@@ -22,13 +26,21 @@ export default function Tool() {
       "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/apply-logo.png",
     scanLogo: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
   };
-  const handlerOptionClick = (url) => {
-    Taro.navigateTo({
-      url,
-    });
+  const handlerOptionClick = (url,type) => {
+    if (user_id === "" && type!='apply') {
+      Taro.showToast({icon:'error',title:'请先报名填写信息'})
+    } else {
+      Taro.navigateTo({
+        url,
+      });
+    }
   };
 
   const scanCode = () => {
+    if (isAdmin !== 1) {
+      Taro.showToast({ icon: 'error', title: '您没有该权限' })
+      return
+    }
     Taro.scanCode({
       success: async (res) => {
         console.log(res.result, "扫码的结果");
@@ -48,7 +60,7 @@ export default function Tool() {
         } else {
           Taro.showToast({
             title: "扫码失败",
-            icon:'error',
+            icon: "error",
             duration: 2000,
           });
         }
@@ -64,7 +76,7 @@ export default function Tool() {
         <View
           className="box-item"
           onClick={() => {
-            handlerOptionClick("/pages/ticket/ticket");
+            handlerOptionClick("/pages/ticket/ticket",'ticket');
           }}
         >
           <ButtonOption
@@ -76,7 +88,7 @@ export default function Tool() {
         <View
           className="box-item"
           onClick={() => {
-            handlerOptionClick("/pages/interview/interview");
+            handlerOptionClick("/pages/interview/interview",'interview');
           }}
         >
           <ButtonOption
@@ -88,7 +100,7 @@ export default function Tool() {
         <View
           className="box-item"
           onClick={() => {
-            handlerOptionClick("/pages/apply/apply");
+            handlerOptionClick("/pages/apply/apply",'apply');
           }}
         >
           <ButtonOption

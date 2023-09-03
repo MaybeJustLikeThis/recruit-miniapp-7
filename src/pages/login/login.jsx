@@ -2,7 +2,7 @@
  * @Author: DoubleLiHao =2998000782@qq.com
  * @Date: 2023-08-24 11:10:02
  * @LastEditors: DoubleLiHao =2998000782@qq.com
- * @LastEditTime: 2023-08-29 22:08:24
+ * @LastEditTime: 2023-09-03 08:12:36
  * @FilePath: \yzyy\src\pages\login\login.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,17 +10,12 @@ import { View, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import "./login.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenId, setUserInfo } from "../../store/userSlice";
-import request  from '../../httpService/request';
+import { setUserInfo, setLoginData } from "../../store/userSlice";
+import request from "../../httpService/request";
 export default function Login() {
   const logoUrl =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png";
   const dispatch = useDispatch();
-  const test = () => {
-    // Taro.switchTab({
-    //   url: "/pages/index/index",
-    // });
-  }
   const userData = useSelector((state) => state.userSlice);
   const toIndex = () => {
     Taro.getUserProfile({
@@ -29,15 +24,15 @@ export default function Login() {
         // 获取用户信息
         dispatch(setUserInfo(data.userInfo));
         Taro.login({
-           async success(data) {
+          async success(data) {
             // const userInfo =  await request(
             //   "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png",
             //   test,
             //   'POST',
             //   {code:data.code}
             // );
-            // dispatch(setOpenId(userInfo));
-            Taro.switchTab({
+            // dispatch(setLoginData(userInfo.data));
+            Taro.navigateTo({
               url: "/pages/index/index",
             });
           },
