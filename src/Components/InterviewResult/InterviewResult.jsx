@@ -1,7 +1,9 @@
 import { View, Image } from "@tarojs/components";
 import styles from "./InterviewResult.module.scss";
-
+import request from "../../httpService/request";
+import Taro,{useReady} from "@tarojs/taro";
 export default function InterviewResult(props) {
+  
   const successLogo =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/resultSuccess.png";
   const failLogo =
@@ -9,8 +11,17 @@ export default function InterviewResult(props) {
   const nullLogo =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/resultNull.png";
 
+    // useReady(async() => {
+    //   const response = await request("http://8xsxi9.natappfree.cc/interview/101/result").then((res) => {
+    //     console.log(res);
+    //   }).catch((err) => {
+    //     console.log(err);
+    //   });
+    //   console.log(response.data, "请求成功");
+    // })
+  console.log('props.type',props.type);
   const showInfo = (type) => {
-    if (type === "success") {
+    if (type === "面试通过") {
       return (
         <View className={`${styles.container} ${styles.success}`}>
           <View className={styles.result}>恭喜你</View>
