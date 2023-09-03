@@ -6,10 +6,10 @@
  * @FilePath: \yzyy\src\pages\user\user.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { View, Text, Image } from "@tarojs/components";
+import { View, Text, Image, Input } from "@tarojs/components";
 import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
-import Taro,{useReady} from "@tarojs/taro";
+import Taro, { useReady } from "@tarojs/taro";
 
 // icon图标引入
 import logo from "../../assets/icons/logo.png";
@@ -21,22 +21,18 @@ import "./user.scss";
 import request from "../../httpService/request";
 
 export default function User() {
-  const { openid } = useSelector(state => state.userSlice)
-  const data = useSelector(state => state.applySlice)
+  const dispatch = useDispatch();
+  const { openid } = useSelector((state) => state.userSlice);
+  const data = useSelector((state) => state.applySlice);
   console.log(data);
   useReady(async () => {
-    const response = await request(
-      "http://t4gbf9.natappfree.cc/user/show",
-      {
-        cloudId: 2022006301,
-      },
-    );
+    const response = await request("http://t4gbf9.natappfree.cc/user/show", {
+      cloudId: openid,
+    });
     console.log(response);
-  })
+  });
   // 获取用户昵称和头像
   const { nickName, avatarUrl } = useSelector((state) => state.userSlice);
-
-
 
   // 生成对应时间的问候语
   const getGreet = () => {
@@ -54,16 +50,25 @@ export default function User() {
       url,
     });
   };
-
   return (
     <View className="page">
       <View className="top">
         <View className="text-container">
           {getGreet()}
-          <Text className="nickname">{nickName}</Text>
+          <Text className="nickname">
+            {nickName === "" ? '同学' : nickName}
+          </Text>
         </View>
         <View className="profile-photo">
-          <Image className="photo" src={avatarUrl} mode="scaleToFill"></Image>
+          {avatarUrl === "" ? (
+            <Image
+              className="photo"
+              // src={"默认头像地址"}
+              mode="scaleToFill"
+            ></Image>
+          ) : (
+            <Image className="photo" src={avatarUrl} mode="scaleToFill"></Image>
+          )}
         </View>
       </View>
 

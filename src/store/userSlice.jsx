@@ -22,9 +22,15 @@ const userSlice = createSlice({
   reducers: {
     // 操作state的函数 action.payload是调用时传的参数
     setUserInfo(state, action) {
-      const { nickName, avatarUrl } = action.payload;
-      state.nickName = nickName;
-      state.avatarUrl = avatarUrl;
+      return {...state, ...action.payload}
+    },
+    setAvatar(state, action) {
+      const obj = { ...state, avatarUrl: action.payload }
+      return obj
+    },
+    setNickName(state, action) {
+      const obj = { ...state, nickName: action.payload }
+      return obj
     },
     setApplicationUrl(state, action) {
       state.applicationUrl = action.payload;
@@ -41,7 +47,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserInfo, setApplicationUrl, setLoginData } =
+export const { setUserInfo, setApplicationUrl, setLoginData, setAvatar,setNickName } =
   userSlice.actions;
 
 export default userSlice;
