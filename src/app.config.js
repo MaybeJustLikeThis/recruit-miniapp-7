@@ -1,8 +1,8 @@
 export default defineAppConfig({
   pages: [
     "pages/index/detail/detail",
-    "pages/index/index",
     "pages/login/login",
+    "pages/index/index",
     "pages/option/option",
     // 报名成功与否页面
     "pages/apply/apply",

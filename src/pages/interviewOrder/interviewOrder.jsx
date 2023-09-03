@@ -4,24 +4,28 @@ import Taro from "@tarojs/taro";
 import "./interviewOrder.scss";
 import request from "../../httpService/request";
 import { useReady } from "@tarojs/taro";
+import { useSelector } from "react-redux";
 export default function interviewOrder() {
+  const { user_id } = useSelector((state) => state.userSlice);
   const [time, setTime] = useState("");
   const [range, setRange] = useState([]);
   const [showTime, setShowTime] = useState("");
+  const isoTime = (time) => {
+    return time.replace(
+      /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/,
+      "$1-$2-$3T$4:$5"
+    );
+  };
   useReady(async () => {
-    await request("http://48awhf.natappfree.cc/interviewTime/allInterviewTimes")
+    await request("/miniapp/interviewTime/allInterviewTimes")
       .then((res) => {
-        console.log(res);
-        const r = res.data[0];
+        console.log(res.data);
+        const r = res.data;
         // let startTime = new Date(r.startTime).toLocaleDateString() + '' + new Date(r.startTime).toLocaleTimeString();
-        // let endTime = new Date(r.endTime).toLocaleDateString() + '' + new Date(r.endTime).toLocaleTimeString();
-        const timeRange = [`${r.startTime}~${r.endTime}`];
+        const timeRange = r.map((item) => {
+          return [`${item.startTime}~${item.endTime}`];
+        });
         setRange(timeRange);
-        const isoTime = r.startTime.replace(
-          /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/,
-          "$1-$2-$3T$4:$5"
-        );
-        setTime(isoTime);
       })
       .catch((err) => {
         console.log(err);
@@ -30,24 +34,12 @@ export default function interviewOrder() {
   // const range = ['9.3 8:00~9:00', '9.3 9:00~10:00']
   const selectTime = (e) => {
     setShowTime(range[e.detail.value]);
-    console.log(e.detail.value);
+    console.log(e.detail.value, "@");
     console.log(range[e.detail.value]);
-    // const parts = range[e.detail.value].split("~");
-    // const startTime = parts[0];
-    // const endTime = parts[1];
-    // const formattedTime = startTime.replace(" ", "T") + ":00";
-    // setTime(formattedTime)
-    // console.log('time',time);
+    const parts = range[e.detail.value][0].split("~");
+    const timeIso = isoTime(parts[0]);
+    setTime(timeIso);
   };
-  // const selectTime = async (e) => {
-  //     const res = await request("http://48awhf.natappfree.cc/interviewTime/allInterviewTimes");
-  //     console.log(res);
-  //     const r = res.data[0];
-  //     const timeRange = [`${r.startTime}~${r.endTime}`];
-  //     setRange(timeRange);
-  //     setTime(res.data[e.detail.value].startTime);
-  //     console.log('time',time);
-  //   };
 
   const submitClick = async () => {
     const toPage = (url) => {
@@ -56,20 +48,26 @@ export default function interviewOrder() {
       });
     };
     await request(
-      "http://48awhf.natappfree.cc/interviewTime/reserve-interview",
+      "/miniapp/interviewTime/reserve-interview",
       {
         interviewTime: time,
-        userId: 105,
+        userId: user_id,
       },
       "POST"
     )
       .then((res) => {
         console.log("预约成功", res);
-        toPage("/pages/success/success");
+        if (res.data === 0) {
+          toPage("/pages/success/success");
+        } else if(res.data === 1){
+            Taro.showToast({title:'该时间段已满',icon:'error'})
+          toPage("/pages/fail/fail");
+        } else if (res.data === 2) {
+          Taro.showToast({ title: "已经预约过面试时间", icon: "error" });
+        }
       })
       .catch((err) => {
         console.log(err);
-        toPage("/pages/fail/fail");
       });
   };
   return (

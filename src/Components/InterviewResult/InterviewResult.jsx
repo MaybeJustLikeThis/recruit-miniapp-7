@@ -21,7 +21,7 @@ export default function InterviewResult(props) {
     // })
   console.log('props.type',props.type);
   const showInfo = (type) => {
-    if (type === "面试通过") {
+    if (type === "success") {
       return (
         <View className={`${styles.container} ${styles.success}`}>
           <View className={styles.result}>恭喜你</View>

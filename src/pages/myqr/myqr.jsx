@@ -4,10 +4,22 @@ import { View, Image, Canvas } from "@tarojs/components";
 import iconLeft from "../../assets/icons/avatarLeft.png";
 import iconRight from "../../assets/icons/avatarRight.png";
 import { useDispatch, useSelector } from "react-redux";
-import {QRCode} from "taro-code";
+import { QRCode } from "taro-code";
+import { useDidShow } from "@tarojs/taro";
+import { setMyQRData } from "../../store/userSlice";
+import request from "../../httpService/request";
 
 export default function Myqr() {
-  const { nickName, avatarUrl, qrData } = useSelector(
+  const dispatch = useDispatch();
+  useDidShow(async () => {
+    const response = await request("/miniapp/checkin/qrcode", {
+      openId: openid,
+      eventName: "面试",
+      expireTime: 60000,
+    });
+    dispatch(setMyQRData(response.data));
+  });
+  const { nickName, avatarUrl, openid, QRData } = useSelector(
     (state) => state.userSlice
   );
   return (
@@ -18,11 +30,7 @@ export default function Myqr() {
         <View className="box up">
           <View className="qr-box">
             <View className="qr">
-              <QRCode
-                text={JSON.stringify(qrData)}
-                size={160}
-                scale={1}
-              ></QRCode>
+              <QRCode text={QRData} size={160} scale={1}></QRCode>
             </View>
           </View>
           <View className="avatar-box">

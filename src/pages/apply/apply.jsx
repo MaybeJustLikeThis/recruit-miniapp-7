@@ -22,13 +22,14 @@ function Apply() {
 
   // 选择的方向
   const direction = ["开发", "设计", "秘书处"];
+  const { openid } = useSelector((state) => state.userSlice);
   const data = useSelector((state) => state.applySlice);
 
   // 判断是否是初次进入页面
   const [isFirstEnter, setisFirstEnter] = useState(true);
   useEffect(() => {
     if (!isFirstEnter) {
-      request("/miniapp/user/save", data, "POST");
+      request("/miniapp/user/save", { ...data, 'cloudId': openid }, "POST");
     }
   }, [data, isFirstEnter]);
 
@@ -45,7 +46,7 @@ function Apply() {
     e.detail.value.direction = directionCheck;
     dispatch(setApplyInfo(e.detail.value));
     setisFirstEnter(false);
-    Taro.switchTab({url:"/pages/user/user"})
+    Taro.navigateTo({ url: "/pages/login/login" });
   };
 
   return (

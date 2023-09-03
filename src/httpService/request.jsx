@@ -1,13 +1,11 @@
 import Taro from "@tarojs/taro";
 
-const request = async (url, data = {}, method = "GET") => {
+const request = async (url, data = {}, method = "GET",header={"Request-Time": new Date().getTime(),}) => {
   const response = await Taro.request({
     url: url,
     data,
     method: method,
-    header: {
-      "Request-Time": new Date().getTime(),
-    }
+    header
   });
   if (response.statusCode === 200) {
     return response.data;

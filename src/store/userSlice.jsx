@@ -15,15 +15,11 @@ const userSlice = createSlice({
     avatarUrl: "",
     nickName: "",
 
-    user_id: "1",
+    user_id: "",
     isAdmin: 0,
     openid: "",
 
-    // 二维码存放的数据
-    qrData: {
-      name: "llh",
-      age: 19,
-    },
+    QRData: "",
     // 申请书照片地址
     applicationUrl: "",
   },
@@ -31,6 +27,9 @@ const userSlice = createSlice({
     // 操作state的函数 action.payload是调用时传的参数
     setUserInfo(state, action) {
       return { ...state, ...action.payload };
+    },
+    setMyQRData(state, action) {
+      return { ...state, QRData: action.payload };
     },
     setApplicationUrl(state, action) {
       state.applicationUrl = action.payload;
@@ -47,10 +46,7 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  setUserInfo,
-  setApplicationUrl,
-  setLoginData,
-} = userSlice.actions;
+export const { setUserInfo, setApplicationUrl, setLoginData, setMyQRData, } =
+  userSlice.actions;
 
 export default userSlice;

@@ -13,9 +13,11 @@ export default function TicketGot() {
   const { ticketGot } = useSelector((state) => state.ticketSlice);
   // 进入页面发送请求
   useDidShow(async () => {
+    console.log(user_id, "user_id");
     const response = await request("/miniapp/ticket/snatchedTicketByUser", {
       user_id,
     });
+    console.log(response.data, "got数据");
     dispatch(setTicketGot(response.data));
   });
   // 根据数据渲染页面
@@ -25,14 +27,16 @@ export default function TicketGot() {
     } else {
       return arr.map((item, index) => {
         return (
-          <TicketBox
-            title={item.lectureTheme}
-            name={item.speaker}
-            time={item.lectureTime}
-            position="大数据学院九楼 数港报告厅"
-            type="got"
-            ticket_id={item.lectureId}
-          ></TicketBox>
+          <View className="info-box">
+            <TicketBox
+              title={item.lectureTheme}
+              name={item.speaker}
+              time={item.lectureTime}
+              position="大数据学院九楼 数港报告厅"
+              type="got"
+              ticket_id={item.lectureId}
+            ></TicketBox>
+          </View>
         );
       });
     }
@@ -42,7 +46,7 @@ export default function TicketGot() {
       <View className="title">已抢的票</View>
 
       <View className="info-container">
-        <View className="info-box">{showTicketBox(ticketGot)}</View>
+        {showTicketBox(ticketGot)}
       </View>
     </View>
   );

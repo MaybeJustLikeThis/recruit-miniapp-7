@@ -25,12 +25,12 @@ export default function Login() {
         dispatch(setUserInfo(data.userInfo));
         Taro.login({
           async success(data) {
+            Taro.showToast({title:'登录成功'})
             const userInfo = await request(
               "/miniapp/wxlogin/getMessage",
               { code: data.code },
               "POST",
             );
-            console.log(userInfo,'登录的信息');
             dispatch(setLoginData(userInfo.data));
             Taro.navigateTo({
               url: "/pages/index/index",
@@ -39,7 +39,7 @@ export default function Login() {
         });
       },
       fail: () => {
-        console.log("获取信息失败");
+        Taro.showToast({title:'登录失败'})
       },
     });
   };

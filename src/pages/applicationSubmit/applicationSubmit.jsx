@@ -9,7 +9,7 @@ import { setApplicationUrl } from "../../store/userSlice";
 export default function ApplicationSubmit() {
   const submitLogo =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/applicationSubmitBlue.png";
-  const { applicationUrl, user_id } = useSelector((state) => state.userSlice);
+  const { applicationUrl, openid } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
   const submitImg = () => {
@@ -19,12 +19,13 @@ export default function ApplicationSubmit() {
       success: (res) => {
         console.log(res.tempFilePaths, "临时图片路径");
         res.tempFilePaths.map((item) => {
+          console.log(item,'临时路径');
           Taro.uploadFile({
-            url: "/miniapp/register/upload",
+            url: "http://ubfcw3.natappfree.cc/miniapp/register/upload",
             filePath: item,
             name: "file",
             formData: {
-              id: user_id,
+              cloudId: openid,
             },
             header: {
               "content-type": "multipart/form-data",

@@ -14,6 +14,7 @@ import request from "../../httpService/request";
 import { useSelector } from "react-redux";
 
 export default function Tool() {
+  const {QRData} = useSelector(state=>state.userSlice)
   const { user_id, isAdmin, openid } = useSelector((state) => state.userSlice);
   console.log(user_id === "", isAdmin === "", "进入页面获取结果");
 
@@ -52,13 +53,16 @@ export default function Tool() {
     }
     Taro.scanCode({
       success: async (res) => {
-        console.log(res.result, "扫码的结果");
+        console.log(res.result === JSON.stringify(QRData),'@@');
         const response = await request(
-          "http://101.7.160.182:9091/checkin/parse",
+          "/miniapp/checkin/parse",
           {
             scanInfo: res.result,
           },
-          "POST"
+          "POST",
+          {
+            "content-type": "application/x-www-form-urlencoded",
+          }
         );
         console.log(response, "发送请求成功");
         if (response.data === true) {

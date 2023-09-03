@@ -21,32 +21,30 @@ export default function TicketDetail() {
   }, []);
 
   useDidShow(async () => {
-    const response = await request("http://101.7.160.182:9091/checkin/qrcode", {
+    const response = await request("/miniapp/checkin/qrcode", {
       openId: openid,
       eventName: "宣讲会",
       expireTime: 60000,
     });
     dispatch(setQRData(response.data));
-    console.log(response, "二维码请求");
   });
   // 抢票
   const getTicket = async () => {
     const response = await request(
-      "/miniapp/checkin/qrcode",
+      "/miniapp/ticket/grab",
       {
-        ticket_id: data.ticket_id,
-        user_id,
+        ticketId: data.ticket_id,
+        userId:user_id,
       },
       "POST"
     );
-    console.log(response.data, "抢票请求成功");
     if (response.data) {
       Taro.showToast({ title: "抢票成功", icon: "success", duration: 2000 });
       setTimeout(() => {
         Taro.switchTab({ url: "/pages/option/option" });
       }, 2000);
     } else {
-      Taro.showToast({ title: "没有抢到票", icon: "error" });
+      Taro.showToast({ title: "没有抢到票", icon: "error", duration: 2000 });
     }
   };
   const showQROrButton = (type) => {
