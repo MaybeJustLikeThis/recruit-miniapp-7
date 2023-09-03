@@ -10,7 +10,7 @@ import { View, Text, Image, Input } from "@tarojs/components";
 import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
 import Taro, { useReady } from "@tarojs/taro";
-import {useState} from "react";
+import { useState } from "react";
 
 // icon图标引入
 import logo from "../../assets/icons/logo.png";
@@ -24,17 +24,20 @@ import { setUserInfo } from "../../store/userSlice";
 
 export default function User() {
   const dispatch = useDispatch();
-  const [info, setInfo] = useState('');
+  const [info, setInfo] = useState("");
   const { openid } = useSelector((state) => state.userSlice);
-  
+
   useReady(async () => {
     const response = await request("/miniapp/user/show", {
       cloudId: openid,
     });
-    console.log(response,'获取用户数据');
-    const obj = { openid: response.data.cloudId || null, user_id: response.data.id || null};
+    console.log(response, "获取用户数据");
+    const obj = {
+      openid: response.data.cloudId || null,
+      user_id: response.data.id || null,
+    };
     dispatch(setUserInfo(obj));
-    setInfo(response.data)
+    setInfo(response.data);
   });
 
   // 获取用户昵称和头像
@@ -52,9 +55,20 @@ export default function User() {
   };
   // 按钮跳转
   const toPage = (url) => {
-    Taro.navigateTo({
-      url,
-    });
+    if (openid === "") {
+      Taro.showModal({
+        confirmText: "确定",
+        showCancel: false,
+        title: "请登陆后再进行其他操作",
+        success: () => {
+          Taro.navigateTo({ url: "/pages/login/login" });
+        },
+      });
+    } else {
+      Taro.navigateTo({
+        url,
+      });
+    }
   };
   return (
     <View className="page">
@@ -83,17 +97,17 @@ export default function User() {
         <View className="info info-up">
           <View className="info-box">
             <View className="info-box-top">
-              <View className="name">{ info.name|| '暂未报名' }</View>
+              <View className="name">{info.name || "暂未报名"}</View>
               <View className="academy">
-                <View className="school">{ info.academy }</View>
-                <View className="direction">{ info.direction }</View>
+                <View className="school">{info.academy}</View>
+                <View className="direction">{info.direction}</View>
               </View>
             </View>
             <View className="info-container">
-              <View>专业班级：{ info.major }</View>
-              <View>手机号：{ info.phone }</View>
-              <View>QQ：{ info.qq }</View>
-              <View>邮箱：{ info.email }</View>
+              <View>专业班级：{info.major}</View>
+              <View>手机号：{info.phone}</View>
+              <View>QQ：{info.qq}</View>
+              <View>邮箱：{info.email}</View>
             </View>
           </View>
           <View className="icon">

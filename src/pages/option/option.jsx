@@ -14,7 +14,7 @@ import request from "../../httpService/request";
 import { useSelector } from "react-redux";
 
 export default function Tool() {
-  const { user_id, isAdmin } = useSelector((state) => state.userSlice);
+  const { user_id, isAdmin, openid } = useSelector((state) => state.userSlice);
   console.log(user_id === "", isAdmin === "", "进入页面获取结果");
 
   const logos = {
@@ -26,9 +26,18 @@ export default function Tool() {
       "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/apply-logo.png",
     scanLogo: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
   };
-  const handlerOptionClick = (url,type) => {
-    if (user_id === null && type!='apply') {
-      Taro.showToast({icon:'error',title:'请先报名填写信息'})
+  const handlerOptionClick = (url, type) => {
+    if (openid === "") {
+      Taro.showModal({
+        confirmText: "确定",
+        showCancel: false,
+        title: "请登陆后再进行其他操作",
+        success: () => {
+          Taro.navigateTo({ url: "/pages/login/login" });
+        },
+      });
+    }else if (user_id === null && type != "apply") {
+      Taro.showToast({ icon: "error", title: "请先报名填写信息" });
     } else {
       Taro.navigateTo({
         url,
@@ -38,8 +47,8 @@ export default function Tool() {
 
   const scanCode = () => {
     if (isAdmin !== 1) {
-      Taro.showToast({ icon: 'error', title: '您没有该权限' })
-      return
+      Taro.showToast({ icon: "error", title: "您没有该权限" });
+      return;
     }
     Taro.scanCode({
       success: async (res) => {
@@ -57,7 +66,7 @@ export default function Tool() {
             title: "扫码成功",
             duration: 2000,
           });
-        } else { 
+        } else {
           Taro.showToast({
             title: "扫码失败",
             icon: "error",
@@ -76,7 +85,7 @@ export default function Tool() {
         <View
           className="box-item"
           onClick={() => {
-            handlerOptionClick("/pages/ticket/ticket",'ticket');
+            handlerOptionClick("/pages/ticket/ticket", "ticket");
           }}
         >
           <ButtonOption
@@ -88,7 +97,7 @@ export default function Tool() {
         <View
           className="box-item"
           onClick={() => {
-            handlerOptionClick("/pages/interview/interview",'interview');
+            handlerOptionClick("/pages/interview/interview", "interview");
           }}
         >
           <ButtonOption
@@ -100,7 +109,7 @@ export default function Tool() {
         <View
           className="box-item"
           onClick={() => {
-            handlerOptionClick("/pages/apply/apply",'apply');
+            handlerOptionClick("/pages/apply/apply", "apply");
           }}
         >
           <ButtonOption
