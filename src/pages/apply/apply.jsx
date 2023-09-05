@@ -29,7 +29,14 @@ function Apply() {
   const [isFirstEnter, setisFirstEnter] = useState(true);
   useEffect(() => {
     if (!isFirstEnter) {
-      request("/miniapp/user/save", { ...data, 'cloudId': openid }, "POST");
+      request("/miniapp/user/save", { ...data, 'cloudId': openid }, "POST").then(res => {
+        if (res.status === '500') {
+          Taro.showToast({icon:'error', title:'信息格式有误'})
+        } else {
+          Taro.showToast({icon:'success',title:'报名成功'})
+          Taro.navigateTo({ url: "/pages/login/login" });
+        }
+      })
     }
   }, [data, isFirstEnter]);
 
@@ -46,7 +53,6 @@ function Apply() {
     e.detail.value.direction = directionCheck;
     dispatch(setApplyInfo(e.detail.value));
     setisFirstEnter(false);
-    Taro.navigateTo({ url: "/pages/login/login" });
   };
 
   return (

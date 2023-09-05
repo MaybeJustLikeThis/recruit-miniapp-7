@@ -14,9 +14,7 @@ import request from "../../httpService/request";
 import { useSelector } from "react-redux";
 
 export default function Tool() {
-  const {QRData} = useSelector(state=>state.userSlice)
   const { user_id, isAdmin, openid } = useSelector((state) => state.userSlice);
-  console.log(user_id === "", isAdmin === "", "进入页面获取结果");
 
   const logos = {
     ticketLogo:
@@ -27,6 +25,7 @@ export default function Tool() {
       "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/apply-logo.png",
     scanLogo: "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/scan-logo.png",
   };
+
   const handlerOptionClick = (url, type) => {
     if (openid === "") {
       Taro.showModal({
@@ -37,7 +36,7 @@ export default function Tool() {
           Taro.navigateTo({ url: "/pages/login/login" });
         },
       });
-    }else if (user_id === null && type != "apply") {
+    } else if (user_id === null && type != "apply") {
       Taro.showToast({ icon: "error", title: "请先报名填写信息" });
     } else {
       Taro.navigateTo({
@@ -53,7 +52,6 @@ export default function Tool() {
     }
     Taro.scanCode({
       success: async (res) => {
-        console.log(res.result === JSON.stringify(QRData),'@@');
         const response = await request(
           "/miniapp/checkin/parse",
           {

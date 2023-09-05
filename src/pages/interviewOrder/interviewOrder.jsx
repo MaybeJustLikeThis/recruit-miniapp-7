@@ -56,7 +56,6 @@ export default function interviewOrder() {
       "POST"
     )
       .then((res) => {
-        console.log("预约成功", res);
         if (res.data === 0) {
           toPage("/pages/success/success");
         } else if(res.data === 1){

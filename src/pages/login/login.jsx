@@ -14,7 +14,7 @@ import { setUserInfo, setLoginData } from "../../store/userSlice";
 import request from "../../httpService/request";
 export default function Login() {
   const logoUrl =
-    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/yundingLogo.png";
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/Ellipse 1.png";
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userSlice);
   const toIndex = () => {

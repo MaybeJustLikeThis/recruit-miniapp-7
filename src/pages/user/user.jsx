@@ -31,7 +31,6 @@ export default function User() {
     const response = await request("/miniapp/user/show", {
       cloudId: openid,
     });
-    console.log(response, "获取用户数据");
     const obj = {
       openid: response.data.cloudId || null,
       user_id: response.data.id || null,

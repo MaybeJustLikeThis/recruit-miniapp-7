@@ -21,7 +21,7 @@ export default function ApplicationSubmit() {
         res.tempFilePaths.map((item) => {
           console.log(item,'临时路径');
           Taro.uploadFile({
-            url: "http://ubfcw3.natappfree.cc/miniapp/register/upload",
+            url: "https://ydsy.61231.cn/miniapp/register/upload",
             filePath: item,
             name: "file",
             formData: {

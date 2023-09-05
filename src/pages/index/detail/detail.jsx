@@ -6,7 +6,7 @@ import {
   Image,
   Button,
 } from "@tarojs/components";
-import { useLoad } from "@tarojs/taro";
+import Taro,{ useLoad } from "@tarojs/taro";
 import "./detail.scss";
 // import React, { useState } from 'react';
 // import request from "../../httpService/request";
@@ -37,8 +37,12 @@ export default function Index() {
     console.log(response, "请求成功");
   };
 
+  const handleClick = () => {
+    Taro.showToast({title:'暂未开发此功能',icon:'none'})
+  }
+
   return (
-    <View className="detail">
+    <View className="detail" onClick={handleClick}>
       <Image className="logo" src={Logo}></Image>
       <View className="news-center">
         <View className="news-center-header">

@@ -19,7 +19,6 @@ const interceptor = function (chain) {
   const { url } = requestParams;
   const baseUrl = "https://ydsy.61231.cn";
   const newUrl = baseUrl + url
-  console.log(newUrl,'新的路劲');
   requestParams.url = newUrl
   return chain.proceed(requestParams);
 }
