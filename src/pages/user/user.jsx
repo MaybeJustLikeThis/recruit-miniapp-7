@@ -9,7 +9,7 @@
 import { View, Text, Image, Input } from "@tarojs/components";
 import ButtonUser from "../../Components/ButtonUser/ButtonUser";
 import { useDispatch, useSelector } from "react-redux";
-import Taro, { useReady } from "@tarojs/taro";
+import Taro, { useDidShow } from "@tarojs/taro";
 import { useState } from "react";
 
 // icon图标引入
@@ -27,7 +27,7 @@ export default function User() {
   const [info, setInfo] = useState("");
   const { openid } = useSelector((state) => state.userSlice);
 
-  useReady(async () => {
+  useDidShow(async () => {
     const response = await request("/miniapp/user/show", {
       cloudId: openid,
     });

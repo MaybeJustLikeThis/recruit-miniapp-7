@@ -17,7 +17,7 @@ const request = async (url, data = {}, method = "GET",header={"Request-Time": ne
 const interceptor = function (chain) {
   const requestParams = chain.requestParams;
   const { url } = requestParams;
-  const baseUrl = "http://ubfcw3.natappfree.cc";
+  const baseUrl = "https://ydsy.61231.cn";
   const newUrl = baseUrl + url
   console.log(newUrl,'新的路劲');
   requestParams.url = newUrl
