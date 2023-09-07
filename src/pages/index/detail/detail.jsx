@@ -38,11 +38,14 @@ export default function Index() {
   };
 
   const handleClick = () => {
-    Taro.showToast({title:'暂未开发此功能',icon:'none'})
+    Taro.showToast({title:'暂未开发即将跳转',icon:'none',duration: 2000})
+    setTimeout(() => {
+      Taro.navigateTo({ url: "/pages/yunding/yunding" });
+    },2000)
   }
 
   return (
-    <View className="detail" onClick={handleClick}>
+    <View className="detail">
       <Image className="logo" src={Logo}></Image>
       <View className="news-center">
         <View className="news-center-header">
@@ -50,7 +53,9 @@ export default function Index() {
             <Image className="center-header-logo-img" src={newsCenter}></Image>
             新闻中心
           </View>
-          <View className="more">更多{">"}</View>
+          <View className="more" onClick={handleClick}>
+            更多{">"}
+          </View>
         </View>
         <View className="news-center-body">
           <Image src={new1}></Image>
@@ -66,7 +71,9 @@ export default function Index() {
             ></Image>
             关于书院
           </View>
-          <View className="more">更多{">"}</View>
+          <View className="more" onClick={handleClick}>
+            更多{">"}
+          </View>
         </View>
         <View className="about-academy-body">
           <Image src={new3}></Image>
