@@ -23,7 +23,7 @@ export default function TicketDetail() {
       const result = startTime - nowTime;
       console.log(result);
       setCountDown(result);
-      if (result > 0) {
+      if (countDown > 0) {
         setInterval(() => {
           setCountDown((pre) => (pre -= 1000));
         }, 1000);
@@ -76,7 +76,7 @@ export default function TicketDetail() {
     if (type === "null") {
       return (
         <View className="button">
-          {countDown ? (
+          {countDown > 0 ? (
             <View>{showCountDown(countDown)}</View>
           ) : (
             <View onclick={getTicket}>抢票</View>
@@ -104,7 +104,6 @@ export default function TicketDetail() {
         ) : (
           <View>
             <View className="text">内容介绍:{data.title}</View>
-            <View className="text-box text">{data.content || "Null"}</View>
           </View>
         )}
       </View>

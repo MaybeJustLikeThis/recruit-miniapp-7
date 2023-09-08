@@ -27,6 +27,7 @@ export default function ApplicationSubmit() {
       success: (res) => {
         console.log(res.tempFilePaths, "临时图片路径");
         res.tempFilePaths.map((item) => {
+          Taro.showLoading({title:'上传中...'})
           Taro.uploadFile({
             url: "https://ydsy.61231.cn/miniapp/register/upload",
             filePath: item,
@@ -38,6 +39,7 @@ export default function ApplicationSubmit() {
               "content-type": "multipart/form-data",
             },
             success: (res) => {
+              Taro.hideLoading()
               Taro.showToast({title:'申请书上传成功'});
             },
           });
