@@ -41,7 +41,7 @@ export default function TicketDetail() {
   });
   // 抢票
   const getTicket = async () => {
-    Taro.showLoading({title:'抢票中...'})
+    Taro.showLoading({ title: "抢票中..." });
     const response = await request(
       "/miniapp/ticket/grab",
       {
@@ -51,7 +51,7 @@ export default function TicketDetail() {
       "POST"
     );
     if (response.data) {
-      Taro.hideLoading()
+      Taro.hideLoading();
       Taro.showToast({ title: "抢票成功", icon: "success", duration: 2000 });
       console.log(response);
       setTimeout(() => {
@@ -67,7 +67,7 @@ export default function TicketDetail() {
   const showCountDown = (time) => {
     const minute = parseInt((time % 3600000) / 60000);
     const hour = parseInt(time / 3600000);
-    const second = parseInt((time % 60000)/1000);
+    const second = parseInt((time % 60000) / 1000);
     return `${hour}:${minute}:${second}`;
   };
 
@@ -75,8 +75,12 @@ export default function TicketDetail() {
   const showQROrButton = (type) => {
     if (type === "null") {
       return (
-        <View className="button" onclick={getTicket}>
-          {countDown ? showCountDown(countDown) : "抢票"}
+        <View className="button">
+          {countDown ? (
+            <View>{showCountDown(countDown)}</View>
+          ) : (
+            <View onclick={getTicket}>抢票</View>
+          )}
         </View>
       );
     } else {
