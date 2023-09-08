@@ -21,6 +21,7 @@ export default function TicketDetail() {
       const startTime = new Date(data.time).getTime();
       const nowTime = new Date().getTime();
       const result = startTime - nowTime;
+      console.log(result);
       setCountDown(result);
       if (result > 0) {
         setInterval(() => {
@@ -52,10 +53,12 @@ export default function TicketDetail() {
     if (response.data) {
       Taro.hideLoading()
       Taro.showToast({ title: "抢票成功", icon: "success", duration: 2000 });
+      console.log(response);
       setTimeout(() => {
         Taro.switchTab({ url: "/pages/option/option" });
       }, 2000);
     } else {
+      console.log(response);
       Taro.showToast({ title: "没有抢到票", icon: "error", duration: 2000 });
     }
   };
@@ -73,7 +76,7 @@ export default function TicketDetail() {
     if (type === "null") {
       return (
         <View className="button" onclick={getTicket}>
-          {countDown ? "抢票":showCountDown(countDown)}
+          {countDown ? showCountDown(countDown) : "抢票"}
         </View>
       );
     } else {

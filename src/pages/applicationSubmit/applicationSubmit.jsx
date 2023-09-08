@@ -1,3 +1,11 @@
+/*
+ * @Author: DoubleLiHao =2998000782@qq.com
+ * @Date: 2023-08-29 11:11:31
+ * @LastEditors: DoubleLiHao =2998000782@qq.com
+ * @LastEditTime: 2023-09-08 17:25:22
+ * @FilePath: \yzyy\src\pages\applicationSubmit\applicationSubmit.jsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { View, Image } from "@tarojs/components";
 import "./applicationSubmit.scss";
 import ButtonSubmit from "../../Components/ButtonSubmit/ButtonSubmit";
@@ -19,7 +27,6 @@ export default function ApplicationSubmit() {
       success: (res) => {
         console.log(res.tempFilePaths, "临时图片路径");
         res.tempFilePaths.map((item) => {
-          console.log(item,'临时路径');
           Taro.uploadFile({
             url: "https://ydsy.61231.cn/miniapp/register/upload",
             filePath: item,
@@ -31,7 +38,7 @@ export default function ApplicationSubmit() {
               "content-type": "multipart/form-data",
             },
             success: (res) => {
-              console.log("请求成功", res);
+              Taro.showToast({title:'申请书上传成功'});
             },
           });
         });
