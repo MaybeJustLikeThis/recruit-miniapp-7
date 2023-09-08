@@ -10,24 +10,42 @@ import { View, Image } from "@tarojs/components";
 import "./applicationSubmit.scss";
 import ButtonSubmit from "../../Components/ButtonSubmit/ButtonSubmit";
 import ColumnBox from "../../Components/ColumnBox/ColumnBox";
-import Taro from "@tarojs/taro";
+import Taro, { useDidShow } from "@tarojs/taro";
 import { useDispatch, useSelector } from "react-redux";
 import { setApplicationUrl } from "../../store/userSlice";
+import request from "../../httpService/request";
 
 export default function ApplicationSubmit() {
   const submitLogo =
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/applicationSubmitBlue.png";
   const { applicationUrl, openid } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
+  console.log(applicationUrl,'申请书');
+  useDidShow(async () => {
+    // 进入页面请求提交过的申请书
+    const response = await request("/miniapp/register/photo", {
+      openId: openid,
+    });
+    const urlArr = [];
+    response.data.map((item) => {
+      urlArr.push(item.photoUrl);
+    });
+    dispatch(setApplicationUrl(urlArr));
+  });
 
+  const reSubmit = async () => {
+    // 先删除数据库中的申请书
+    // const response = await request('',{})
+    dispatch(setApplicationUrl([]));
+    submitImg()
+  }
   const submitImg = () => {
     Taro.chooseImage({
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: (res) => {
-        console.log(res.tempFilePaths, "临时图片路径");
         res.tempFilePaths.map((item) => {
-          Taro.showLoading({title:'上传中...'})
+          Taro.showLoading({ title: "上传中..." });
           Taro.uploadFile({
             url: "https://ydsy.61231.cn/miniapp/register/upload",
             filePath: item,
@@ -39,8 +57,8 @@ export default function ApplicationSubmit() {
               "content-type": "multipart/form-data",
             },
             success: (res) => {
-              Taro.hideLoading()
-              Taro.showToast({title:'申请书上传成功'});
+              Taro.hideLoading();
+              Taro.showToast({ title: "申请书上传成功" });
             },
           });
         });
@@ -86,13 +104,20 @@ export default function ApplicationSubmit() {
             <View className="application-box">
               {showImgOrSubmit(applicationUrl)}
             </View>
-            <View className="warn">(请尽可能保证图片清晰哦)</View>
+            <View className="warn">请尽可能保证图片清晰哦</View>
+            <View className="warn">(上传后点击可预览)</View>
           </View>
         </ColumnBox>
       </View>
-      <View className="button-box">
-        <ButtonSubmit value="提交"></ButtonSubmit>
-      </View>
+      {applicationUrl === "" ? (
+        <View className="button-box" onClick={submitImg}>
+          <ButtonSubmit value="提交"></ButtonSubmit>
+        </View>
+      ) : (
+        <View className="button-box" onClick={reSubmit}>
+          <ButtonSubmit value="重新提交"></ButtonSubmit>
+        </View>
+      )}
     </View>
   );
 }

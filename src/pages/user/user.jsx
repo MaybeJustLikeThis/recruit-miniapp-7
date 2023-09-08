@@ -25,8 +25,8 @@ import { setUserInfo } from "../../store/userSlice";
 export default function User() {
   const dispatch = useDispatch();
   const [info, setInfo] = useState("");
-  const { openid } = useSelector((state) => state.userSlice);
-
+  const { openid, user_id } = useSelector((state) => state.userSlice);
+  console.log(user_id, "user_id");
   useDidShow(async () => {
     const response = await request("/miniapp/user/show", {
       cloudId: openid,
@@ -61,6 +61,15 @@ export default function User() {
         title: "请登陆后再进行其他操作",
         success: () => {
           Taro.navigateTo({ url: "/pages/login/login" });
+        },
+      });
+    } else if (user_id === null) {
+      Taro.showModal({
+        confirmText: "确定",
+        showCancel: false,
+        title: "请先进行报名",
+        success: () => {
+          Taro.navigateTo({ url: "/pages/apply/apply" });
         },
       });
     } else {
