@@ -20,30 +20,40 @@ export default function ApplicationSubmit() {
     "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/applicationSubmitBlue.png";
   const { applicationUrl, openid } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
-  console.log(applicationUrl,'申请书');
   useDidShow(async () => {
     // 进入页面请求提交过的申请书
     const response = await request("/miniapp/register/photo", {
       openId: openid,
     });
-    const urlArr = [];
-    response.data.map((item) => {
-      urlArr.push(item.photoUrl);
-    });
-    dispatch(setApplicationUrl(urlArr));
+    if (response.data.length > 0) {
+      const urlArr = [];
+      response.data.map((item) => {
+        urlArr.push(item.photoUrl);
+      });
+      dispatch(setApplicationUrl(urlArr));
+    }
   });
 
   const reSubmit = async () => {
-    // 先删除数据库中的申请书
-    // const response = await request('',{})
+    //   // 先删除数据库中的申请书
+    const response = await request(
+      "/miniapp/register/photo",
+      { openId: openid },
+      "DELETE",
+      {
+        "content-type": "application/x-www-form-urlencoded",
+      }
+    );
     dispatch(setApplicationUrl([]));
-    submitImg()
-  }
+    submitImg();
+  };
+  // 申请书提交
   const submitImg = () => {
     Taro.chooseImage({
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: (res) => {
+        dispatch(setApplicationUrl(res.tempFilePaths));
         res.tempFilePaths.map((item) => {
           Taro.showLoading({ title: "上传中..." });
           Taro.uploadFile({
@@ -56,26 +66,25 @@ export default function ApplicationSubmit() {
             header: {
               "content-type": "multipart/form-data",
             },
-            success: (res) => {
-              Taro.hideLoading();
-              Taro.showToast({ title: "申请书上传成功" });
-            },
           });
         });
-        dispatch(setApplicationUrl(res.tempFilePaths));
+        Taro.hideLoading();
+        Taro.showToast({ title: "申请书上传成功" });
       },
       fail: (err) => {
         console.log("未选择图片", err);
       },
     });
   };
+  // 预览图片
   const previewImg = (applicationUrl) => {
     Taro.previewImage({
       urls: applicationUrl,
     });
   };
+  // 选择展示提交按钮还是申请书照片
   const showImgOrSubmit = (applicationUrl) => {
-    if (applicationUrl != "") {
+    if (applicationUrl.length > 0) {
       return (
         <Image
           className="img"
@@ -109,13 +118,13 @@ export default function ApplicationSubmit() {
           </View>
         </ColumnBox>
       </View>
-      {applicationUrl === "" ? (
-        <View className="button-box" onClick={submitImg}>
-          <ButtonSubmit value="提交"></ButtonSubmit>
-        </View>
-      ) : (
+      {applicationUrl.length > 0 ? (
         <View className="button-box" onClick={reSubmit}>
           <ButtonSubmit value="重新提交"></ButtonSubmit>
+        </View>
+      ) : (
+        <View className="button-box" onClick={submitImg}>
+          <ButtonSubmit value="提交"></ButtonSubmit>
         </View>
       )}
     </View>

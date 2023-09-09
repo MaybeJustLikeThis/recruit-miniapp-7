@@ -36,7 +36,7 @@ export default function TicketDetail() {
       eventName: "宣讲会",
       expireTime: 60000,
     });
-    dispatch(setQRData(response.data || "null"));
+    dispatch(setQRData(response.data || false));
   });
   // 抢票
   const getTicket = async () => {
@@ -68,12 +68,14 @@ export default function TicketDetail() {
     return `${hour}:${minute}:${second}`;
   };
 
+  // }
   // 展示抢票或二维码
   const showQROrButton = (type) => {
+    console.log(QRData,'QRData');
     if (type === "null") {
       return (
         <View className="button">
-          {countDown >0? (
+          {countDown > 0 ? (
             <View>{showCountDown(countDown)}</View>
           ) : (
             <View onclick={getTicket}>抢票</View>
@@ -88,20 +90,23 @@ export default function TicketDetail() {
       );
     }
   };
-  
+
   return (
     <View className="page">
       <View className="container">
         <View className="title">详情</View>
         <View className="title-name">{data.title}</View>
-        <View className="text">宣讲人:{data.name}</View>
-        <View className="text">时间:{data.time}</View>
-        <View className="text">地点:{data.position}</View>
+        <View className="text">宣讲人：{data.name}</View>
+        <View className="text">抢票时间：{data.time}</View>
+        <View className="text">地点：{data.position}</View>
         {data.type === "got" ? (
           false
         ) : (
           <View>
-            <View className="text">内容介绍:{data.title}</View>
+            <View className="text">内容介绍：</View>
+            <View className="text-detail">
+              {data.content}
+            </View>
           </View>
         )}
       </View>

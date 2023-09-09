@@ -25,7 +25,7 @@ export default function TicketBox(props) {
                 </View>
                 <View className={styles.infoBox}>
                     <View>宣讲人：{ props.name }</View>
-                    <View>时间：{ props.time }</View>
+                    <View>抢票时间：{ props.time }</View>
                     <View>地点：{ props.position }</View>
                 </View>
                 <View className={styles.button} onClick={()=>toDetail()}>查看详情</View>

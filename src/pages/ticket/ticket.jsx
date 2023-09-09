@@ -28,6 +28,7 @@ export default function Ticket() {
               position="大数据学院九楼 数港报告厅"
               type="null"
               ticket_id={item.lectureId}
+              content = {item.contentIntroduction}
             ></TicketBox>
           </View>
         );

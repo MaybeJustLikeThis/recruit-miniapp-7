@@ -23,6 +23,7 @@ export default function Login() {
       success: (data) => {
         // 获取用户信息
         dispatch(setUserInfo(data.userInfo));
+        Taro.showLoading({title:'登录中...'})
         Taro.login({
           async success(data) {
             Taro.showToast({ title: "登录成功" });
@@ -31,7 +32,7 @@ export default function Login() {
               { code: data.code },
               "POST"
             );
-            console.log(userInfo.data);
+            Taro.hideLoading();
             dispatch(setLoginData(userInfo.data));
             Taro.navigateTo({
               url: "/pages/index/index",

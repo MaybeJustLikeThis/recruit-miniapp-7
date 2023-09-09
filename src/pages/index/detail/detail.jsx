@@ -15,11 +15,11 @@ import aboutAcademy from "../../../assets/icons/aboutAcademy.png";
 
 export default function Index() {
   const new1 =
-    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/new1.png";
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/微信图片_20230909232038.jpg";
   const new2 =
-    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/new2.png";
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/微信图片_20230909232039.jpg";
   const new3 =
-    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/new3.png";
+    "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/QQ图片20230910003933.jpg";
   const Logo = "https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/logo.png";
   useLoad(() => {
     console.log("Page loaded.");

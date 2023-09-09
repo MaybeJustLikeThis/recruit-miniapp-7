@@ -26,7 +26,6 @@ export default function User() {
   const dispatch = useDispatch();
   const [info, setInfo] = useState("");
   const { openid, user_id } = useSelector((state) => state.userSlice);
-  console.log(user_id, "user_id");
   useDidShow(async () => {
     const response = await request("/miniapp/user/show", {
       cloudId: openid,
