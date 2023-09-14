@@ -21,7 +21,7 @@ export default function interviewOrder() {
     await request("/miniapp/interviewTime/reservations", {
       userId: user_id,
     }).then((res) => {
-      if (res.data.data.length !== 0) {
+      if (res.data.length !== 0) {
         setIsOrder(true);
         const time = new Date(res.data.data[0].interviewTime);
         setShowTime(time.toLocaleString());
@@ -30,7 +30,7 @@ export default function interviewOrder() {
     // 展示预约时间
     await request("/miniapp/interviewTime/allInterviewTimes")
       .then((res) => {
-        const r = res.data.data;
+        const r = res.data;
         const timeRange = r.map((item) => {
           const endtime = item.endTime.split(" ")[1];
           return [`${item.startTime}~${endtime}`];
@@ -69,21 +69,21 @@ export default function interviewOrder() {
       "POST"
     )
       .then((res) => {
-        if (res.data.data === 0) {
+        if (res.data === 0) {
           toPage("/pages/success/success");
-        } else if (res.data.data === 1) {
+        } else if (res.data === 1) {
           Taro.showToast({
             title: "该时间段已满",
             icon: "error",
             duration: 1500,
           });
-        } else if (res.data.data === 2) {
+        } else if (res.data === 2) {
           Taro.showToast({
             title: "已经预约过面试时间",
             icon: "error",
             duration: 1500,
           });
-        } else if (res.data.data === 3) {
+        } else if (res.data === 3) {
           Taro.showToast({
             title: "请先提交申请书",
             icon: "error",
