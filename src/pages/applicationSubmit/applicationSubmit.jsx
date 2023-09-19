@@ -2,7 +2,7 @@
  * @Author: DoubleLiHao =2998000782@qq.com
  * @Date: 2023-08-29 11:11:31
  * @LastEditors: DoubleLiHao =2998000782@qq.com
- * @LastEditTime: 2023-09-08 17:25:22
+ * @LastEditTime: 2023-09-19 11:30:38
  * @FilePath: \yzyy\src\pages\applicationSubmit\applicationSubmit.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,14 +49,15 @@ export default function ApplicationSubmit() {
   };
   // 申请书提交
   const submitImg = () => {
+    let count = [];
     Taro.chooseImage({
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: (res) => {
         dispatch(setApplicationUrl(res.tempFilePaths));
-        res.tempFilePaths.map((item) => {
+        res.tempFilePaths.map(async (item) => {
           Taro.showLoading({ title: "上传中..." });
-          Taro.uploadFile({
+          await Taro.uploadFile({
             url: "https://ydsy.61231.cn/miniapp/register/upload",
             filePath: item,
             name: "file",
@@ -66,10 +67,18 @@ export default function ApplicationSubmit() {
             header: {
               "content-type": "multipart/form-data",
             },
+          }).then((res) => {
+            const result = JSON.parse(res.data).status;
+            if (result === "0") {
+              count.push(true);
+            }
           });
+          if (count.length === res.tempFilePaths.length) {
+            console.log(count.length);
+            Taro.hideLoading();
+            Taro.showToast({ title: "申请书上传成功" });
+          }
         });
-        Taro.hideLoading();
-        Taro.showToast({ title: "申请书上传成功" });
       },
       fail: (err) => {
         console.log("未选择图片", err);
