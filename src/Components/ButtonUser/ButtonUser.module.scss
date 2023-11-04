@@ -1,0 +1,28 @@
+.button{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4990E2;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    width: 36px;
+    height: 36px;
+    margin-bottom: 10px;
+}
+.text{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16.9px;
+    color: #FFFFFF;
+}

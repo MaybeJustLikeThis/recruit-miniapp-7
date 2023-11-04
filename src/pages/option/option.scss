@@ -1,0 +1,20 @@
+.page{
+    height: 100vh;
+    background: url(https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/options-bg.png) no-repeat;
+    background-position: bottom center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 320px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box-item{
+    height: 120px;
+}

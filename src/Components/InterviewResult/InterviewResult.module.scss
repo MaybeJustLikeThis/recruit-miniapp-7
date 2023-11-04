@@ -1,0 +1,60 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgba(73, 144, 226, 1);
+    font-family: Arial;
+}
+
+.success{
+    background: url('https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/user-bg.png') no-repeat;
+    background-position: bottom 68.5px center;
+}
+
+.result{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 55px;
+}
+
+.greet{
+    margin: 32px 0 ;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.text{
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.icon{
+    width: 240px;
+    height: 240px;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+}
+
+.empty{
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 41px;
+    margin-bottom: 16px;
+    position: relative;
+    top: 72px;
+}
+
+.iconNull{
+    margin-top: 190px;
+    width: 279px;
+    height: 185px;
+}

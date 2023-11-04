@@ -1,0 +1,67 @@
+.page{
+    height: 100vh;
+    background: url(https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/ticketDetail-bg.png) no-repeat;
+    background-position: bottom 48px center;
+    background-size: contain;
+}
+
+.container{
+    margin-left: 32px;
+    height: 450px;
+    font-family: Arial;
+    .title{
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 37px;
+    }
+    .title-name{
+        margin:24px 0 16px;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 28px;
+        color: rgba(73, 144, 226, 1);
+    }
+    .text{
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 23px;
+        margin-bottom: 16px;
+    }
+    .text-detail{
+        width: 300px;
+        height: 200px;
+        overflow-y: scroll;
+        padding-right: 10px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 2px;
+    }
+    .text-box{
+        max-height: 215px;
+    }
+}
+
+.button{
+    width: 200px;
+    height: 48px;
+    border-radius: 16px;
+    margin: 50px auto;
+    background-color: rgba(73, 144, 226, 1);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 48px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+}
+
+.QR{
+    width: 240px;
+    height: 240px;
+    position: relative;
+    top: -130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}

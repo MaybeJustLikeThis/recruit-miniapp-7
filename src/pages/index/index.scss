@@ -1,0 +1,101 @@
+// @font-face {
+//     font-family: 'PingFang';
+//     src: url('~@assets/PingFang Regular.otf') format('truetype');
+//   }
+// @import "../../assets/PingFang.css";
+
+.home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url('https://img-doubleli.oss-cn-hangzhou.aliyuncs.com/login-bg.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+
+  .prompts {
+    // width: 330px;
+    height: 192px;
+    font-size: 32px;
+    // background-color: red;
+    line-height: 44.8px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 14%;
+
+    h1 {
+      color: #4990E2;
+    }
+
+    .welcome {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .swiper {
+    margin-top: 30px;
+    width: 100%;
+    height: 200px;
+
+    // background-color: green;
+
+
+    .swiper-slide {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      width: 80px;
+      height: 80px;
+      margin-top: 50%;
+      border-radius: 50%;
+      // background-color: red;
+      background-color: #4990E2;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.6;
+
+      // margin-right: 10px;
+      .image {
+        width: 80px;
+        height: 80px;
+        z-index: 100;
+      }
+    }
+
+    .swiper-slide.active {
+      background-color: #4990E2;
+      opacity: 1;
+      transform: scale(1.5);
+      transition: all 0.5s;
+    }
+
+    //添加一个过渡动画
+
+
+  }
+
+  .submitButton {
+    margin-top: 50px;
+    width: 96px;
+    height: 48px;
+    background-color: #4990E2;
+    font-size: 24px;
+    line-height: 27.54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #FFFFFF;
+    border-radius: 16px;
+    transition: ease-in-out;
+    
+  }
+}
